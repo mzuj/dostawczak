@@ -180,6 +180,9 @@
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetUserLogins.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>

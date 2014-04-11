@@ -17,7 +17,9 @@ namespace KU.Controllers
         // GET: /Zlecenie/
         public ActionResult Index()
         {
-            var zlecenie = db.Zlecenie.Include(z => z.AspNetUsers);
+            var zlecenie = from s in db.Zlecenie
+                           select s;
+            zlecenie = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
             return View(zlecenie.ToList());
         }
 
