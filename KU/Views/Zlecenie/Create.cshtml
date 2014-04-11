@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Miejsce_nadania, new { @class = "control-label col-md-2" })
+            @Html.Label("Miejsce nadania", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Miejsce_nadania)
                 @Html.ValidationMessageFor(model => model.Miejsce_nadania)
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Miejsce_dostawy, new { @class = "control-label col-md-2" })
+            @Html.Label("Miejsce dostawy", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Miejsce_dostawy)
                 @Html.ValidationMessageFor(model => model.Miejsce_dostawy)
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Odbiorca, new { @class = "control-label col-md-2" })
+            @Html.Label("Odbiorca", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Odbiorca)
                 @Html.ValidationMessageFor(model => model.Odbiorca)
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Zleceniodawca, new { @class = "control-label col-md-2" })
+            @Html.Label("Zleceniodawca", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Zleceniodawca)
                 @Html.ValidationMessageFor(model => model.Zleceniodawca)
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Zawartosc, new { @class = "control-label col-md-2" })
+            @Html.Label("Zawartość", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Zawartosc)
                 @Html.ValidationMessageFor(model => model.Zawartosc)
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Ilosc_opakowan, new { @class = "control-label col-md-2" })
+            @Html.Label("Ilość opakowań", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Ilosc_opakowan)
                 @Html.ValidationMessageFor(model => model.Ilosc_opakowan)
@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Rodzaj_opakowan, new { @class = "control-label col-md-2" })
+            @Html.Label("Rodzaj opakowań", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Rodzaj_opakowan)
                 @Html.ValidationMessageFor(model => model.Rodzaj_opakowan)
@@ -110,16 +110,14 @@
                 @Html.DropDownList("ID", String.Empty)
                 @Html.ValidationMessageFor(model => model.ID)
             </div>
-        </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
+        </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
