@@ -1,0 +1,26 @@
+﻿@model IEnumerable<KU.Models.Zlecenie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table>
+    @foreach (var item in Model)
+    {
+
+            <li>
+                @Html.ActionLink(item.Kategoria_zlecenia + ": " + item.ZlecenieID, "Details", new {id = item.ZlecenieID }) <br>
+                Adres: @item.Miejsce_dostawy<br>
+                Odbiorca: @item.Odbiorca<br>
+            </li>
+
+    }
+
+
+</table>

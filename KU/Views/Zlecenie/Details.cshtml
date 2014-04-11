@@ -1,0 +1,114 @@
+﻿@model KU.Models.Zlecenie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Zlecenie</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Miejsce_nadania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miejsce_nadania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miejsce_dostawy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miejsce_dostawy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odbiorca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odbiorca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zleceniodawca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zleceniodawca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zawartosc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zawartosc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ilosc_opakowan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ilosc_opakowan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rodzaj_opakowan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rodzaj_opakowan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materialy_niebezpieczne)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materialy_niebezpieczne)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pobranie_za_przesylke)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pobranie_za_przesylke)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priorytet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priorytet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoria_zlecenia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoria_zlecenia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ZlecenieID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
