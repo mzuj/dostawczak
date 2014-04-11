@@ -61,9 +61,9 @@
           <Property Name="Zawartosc" Type="nvarchar" MaxLength="100" />
           <Property Name="Ilosc opakowan" Type="int" />
           <Property Name="Rodzaj opakowan" Type="nvarchar" MaxLength="100" />
-          <Property Name="Materialy niebezpieczne" Type="bit" />
-          <Property Name="Pobranie za przesylke" Type="bit" />
-          <Property Name="Priorytet" Type="bit" />
+          <Property Name="Materialy niebezpieczne" Type="bit" Nullable="false" />
+          <Property Name="Pobranie za przesylke" Type="bit" Nullable="false" />
+          <Property Name="Priorytet" Type="bit" Nullable="false" />
           <Property Name="Kategoria zlecenia" Type="nvarchar" MaxLength="50" />
           <Property Name="ID" Type="nvarchar" MaxLength="128" />
         </EntityType>
@@ -214,9 +214,9 @@
           <Property Name="Zawartosc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Ilosc_opakowan" Type="Int32" />
           <Property Name="Rodzaj_opakowan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Materialy_niebezpieczne" Type="Boolean" />
-          <Property Name="Pobranie_za_przesylke" Type="Boolean" />
-          <Property Name="Priorytet" Type="Boolean" />
+          <Property Name="Materialy_niebezpieczne" Type="Boolean" Nullable="false" />
+          <Property Name="Pobranie_za_przesylke" Type="Boolean" Nullable="false" />
+          <Property Name="Priorytet" Type="Boolean" Nullable="false" />
           <Property Name="Kategoria_zlecenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" FromRole="Zlecenie" ToRole="AspNetUsers" />

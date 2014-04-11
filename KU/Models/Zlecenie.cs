@@ -22,9 +22,9 @@ namespace KU.Models
         public string Zawartosc { get; set; }
         public Nullable<int> Ilosc_opakowan { get; set; }
         public string Rodzaj_opakowan { get; set; }
-        public Nullable<bool> Materialy_niebezpieczne { get; set; }
-        public Nullable<bool> Pobranie_za_przesylke { get; set; }
-        public Nullable<bool> Priorytet { get; set; }
+        public bool Materialy_niebezpieczne { get; set; }
+        public bool Pobranie_za_przesylke { get; set; }
+        public bool Priorytet { get; set; }
         public string Kategoria_zlecenia { get; set; }
         public string ID { get; set; }
     
