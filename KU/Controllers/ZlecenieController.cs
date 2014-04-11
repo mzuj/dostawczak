@@ -19,10 +19,14 @@ namespace KU.Controllers
         {
             var zlecenie = from s in db.Zlecenie
                            select s;
-            zlecenie = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
+
+            var zlecenieZwykle = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
+            var zleceniePilne = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name) || s.Priorytet.Equals(true));
+            var listaZlecen = zleceniePilne.Union(zlecenieZwykle);
+            
             return View(zlecenie.ToList());
         }
-
+        
         // GET: /Zlecenie/Details/5
         public ActionResult Details(int? id)
         {

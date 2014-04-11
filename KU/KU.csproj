@@ -283,7 +283,9 @@
     <Content Include="Views\Zlecenie\Edit.cshtml" />
     <Content Include="Views\Zlecenie\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Logic\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

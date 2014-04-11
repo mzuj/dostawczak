@@ -10,17 +10,25 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<table>
-    @foreach (var item in Model)
-    {
+    @if (User.Identity.IsAuthenticated) {  
 
-            <li>
-                @Html.ActionLink(item.Kategoria_zlecenia + ": " + item.ZlecenieID, "Details", new {id = item.ZlecenieID }) <br>
-                Adres: @item.Miejsce_dostawy<br>
-                Odbiorca: @item.Odbiorca<br>
-            </li>
+        foreach (var item in Model)
+        {
+            if (item.Priorytet.Value.Equals(false)) { 
+                <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Details", "Zlecenie", new { id = item.ZlecenieID })'">
+                    @Html.ActionLink(item.Kategoria_zlecenia + ": " + item.ZlecenieID, "Details", new { id = item.ZlecenieID }) <br>
+                    Adres: @item.Miejsce_dostawy<br>
+                    Odbiorca: @item.Odbiorca<br>
+                </button>
+            }
+            else { 
+                <button type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("Details", "Zlecenie", new { id = item.ZlecenieID })'">
+                    @Html.ActionLink(item.Kategoria_zlecenia + ": " + item.ZlecenieID, "Details", new {id = item.ZlecenieID }) <br>
+                    Adres: @item.Miejsce_dostawy<br>
+                    Odbiorca: @item.Odbiorca<br>
+                </button>
+            }
+        }
 
     }
 
-
-</table>

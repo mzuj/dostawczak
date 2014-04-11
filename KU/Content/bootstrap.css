@@ -2000,6 +2000,7 @@ textarea.input-lg {
 .btn {
   display: inline-block;
   padding: 6px 12px;
+  width:100%;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: normal;

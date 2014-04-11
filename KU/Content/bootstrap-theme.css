@@ -2008,6 +2008,7 @@ select[multiple].input-lg {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  width: 100%;
 }
 .btn:focus,
 .btn:active:focus,
