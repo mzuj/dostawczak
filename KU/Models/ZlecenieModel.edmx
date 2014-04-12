@@ -33,9 +33,9 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
     </AssociationSet>
-    <AssociationSet Name="ZlecenieStatusZlecenie" Association="ZlecenieModel.Store.ZlecenieStatusZlecenie">
-      <End Role="Zlecenie" EntitySet="Zlecenie" />
+    <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="ZlecenieModel.Store.FK_ZlecenieStatusZlecenie">
       <End Role="StatusZlecenie" EntitySet="StatusZlecenie" />
+      <End Role="Zlecenie" EntitySet="Zlecenie" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="AspNetRoles">
@@ -82,8 +82,7 @@
     <Property Name="Priorytet" Type="bit" Nullable="false" />
     <Property Name="Kategoria_zlecenia" Type="nvarchar" Nullable="true" MaxLength="50" />
     <Property Name="Kurier" Type="nvarchar" Nullable="true" MaxLength="128" />
-    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="StatusZlecenieId" Type="int" Nullable="true" />
+    <Property Name="Status" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserClaims">
     <Key>
@@ -151,15 +150,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ZlecenieStatusZlecenie">
+  <Association Name="FK_ZlecenieStatusZlecenie">
+    <End Role="StatusZlecenie" Type="ZlecenieModel.Store.StatusZlecenie" Multiplicity="1" />
     <End Role="Zlecenie" Type="ZlecenieModel.Store.Zlecenie" Multiplicity="*" />
-    <End Role="StatusZlecenie" Type="ZlecenieModel.Store.StatusZlecenie" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="StatusZlecenie">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Zlecenie">
-        <PropertyRef Name="StatusZlecenieId" />
+        <PropertyRef Name="Status" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -242,9 +241,8 @@
           <Property Name="Kategoria_zlecenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Kurier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" FromRole="Zlecenie" ToRole="AspNetUsers" />
-          <Property Name="Status" Type="String" Nullable="false" />
-          <NavigationProperty Name="StatusZlecenie" Relationship="ZlecenieModel.ZlecenieStatusZlecenie" FromRole="Zlecenie" ToRole="StatusZlecenie" />
-          <Property Name="StatusZlecenieId" Type="Int32" Nullable="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StatusZlecenie" Relationship="ZlecenieModel.FK_ZlecenieStatusZlecenie" FromRole="Zlecenie" ToRole="StatusZlecenie" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -301,9 +299,9 @@
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
           </AssociationSet>
           <EntitySet Name="StatusZlecenie" EntityType="ZlecenieModel.StatusZlecenie" />
-          <AssociationSet Name="ZlecenieStatusZlecenie" Association="ZlecenieModel.ZlecenieStatusZlecenie">
-            <End Role="Zlecenie" EntitySet="Zlecenie" />
+          <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="ZlecenieModel.FK_ZlecenieStatusZlecenie">
             <End Role="StatusZlecenie" EntitySet="StatusZlecenie" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetUserClaims">
@@ -336,17 +334,17 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.ZlecenieStatusZlecenie" FromRole="StatusZlecenie" ToRole="Zlecenie" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZlecenieStatusZlecenie" FromRole="StatusZlecenie" ToRole="Zlecenie" />
         </EntityType>
-        <Association Name="ZlecenieStatusZlecenie">
+        <Association Name="FK_ZlecenieStatusZlecenie">
+          <End Type="ZlecenieModel.StatusZlecenie" Role="StatusZlecenie" Multiplicity="1" />
           <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
-          <End Type="ZlecenieModel.StatusZlecenie" Role="StatusZlecenie" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="StatusZlecenie">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Zlecenie">
-              <PropertyRef Name="StatusZlecenieId" />
+              <PropertyRef Name="Status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -401,7 +399,6 @@
           <ScalarProperty Name="Kategoria_zlecenia" ColumnName="Kategoria_zlecenia" />
           <ScalarProperty Name="Kurier" ColumnName="Kurier" />
           <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="StatusZlecenieId" ColumnName="StatusZlecenieId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -11,7 +11,7 @@
         <AssociationConnector Association="ZlecenieModel.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ZlecenieModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ZlecenieModel.StatusZlecenie" Width="1.5" PointX="12.625" PointY="4.25" />
-        <AssociationConnector Association="ZlecenieModel.ZlecenieStatusZlecenie" />
+        <AssociationConnector Association="ZlecenieModel.FK_ZlecenieStatusZlecenie" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/12/2014 11:41:35
+-- Date Created: 04/12/2014 13:20:51
 -- Generated from EDMX file: C:\Users\TomekI\Documents\Visual Studio 2013\Projects\KU\KU\Models\ZlecenieModel.edmx
 -- --------------------------------------------------
 
@@ -31,6 +31,9 @@ IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS 
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Zlecenie_dbo_AspNetUsers_ID]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Zlecenie] DROP CONSTRAINT [FK_dbo_Zlecenie_dbo_AspNetUsers_ID];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ZlecenieStatusZlecenie]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Zlecenie] DROP CONSTRAINT [FK_ZlecenieStatusZlecenie];
 GO
 
 -- --------------------------------------------------
@@ -103,8 +106,7 @@ CREATE TABLE [dbo].[Zlecenie] (
     [Priorytet] bit  NOT NULL,
     [Kategoria_zlecenia] nvarchar(50)  NULL,
     [Kurier] nvarchar(128)  NULL,
-    [Status] nvarchar(max)  NOT NULL,
-    [StatusZlecenieId] int  NULL
+    [Status] int  NOT NULL
 );
 GO
 
@@ -241,10 +243,10 @@ ON [dbo].[AspNetUserClaims]
     ([User_Id]);
 GO
 
--- Creating foreign key on [StatusZlecenieId] in table 'Zlecenie'
+-- Creating foreign key on [Status] in table 'Zlecenie'
 ALTER TABLE [dbo].[Zlecenie]
 ADD CONSTRAINT [FK_ZlecenieStatusZlecenie]
-    FOREIGN KEY ([StatusZlecenieId])
+    FOREIGN KEY ([Status])
     REFERENCES [dbo].[StatusZlecenie]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -252,7 +254,7 @@ ADD CONSTRAINT [FK_ZlecenieStatusZlecenie]
 -- Creating non-clustered index for FOREIGN KEY 'FK_ZlecenieStatusZlecenie'
 CREATE INDEX [IX_FK_ZlecenieStatusZlecenie]
 ON [dbo].[Zlecenie]
-    ([StatusZlecenieId]);
+    ([Status]);
 GO
 
 -- --------------------------------------------------
