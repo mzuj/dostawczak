@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1fb4b2c01a5d4829aac52ce08944ad80" Name="Diagram1">
-        <EntityTypeShape EntityType="ZlecenieModel.AspNetUsers" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ZlecenieModel.AspNetUsers" PointX="3" PointY="5" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ZlecenieModel.Zlecenie" Width="1.5" PointX="8.125" PointY="2.5" IsExpanded="true" />
-        <AssociationConnector Association="ZlecenieModel.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="ZlecenieModel.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" />
         <EntityTypeShape EntityType="ZlecenieModel.StatusZlecenie" Width="1.5" PointX="12.625" PointY="4.25" />
         <AssociationConnector Association="ZlecenieModel.FK_ZlecenieStatusZlecenie" />
-        <EntityTypeShape EntityType="ZlecenieModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="3.5" />
-        <EntityTypeShape EntityType="ZlecenieModel.C__MigrationHistory" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ZlecenieModel.AspNetRoles" PointX="0.75" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="ZlecenieModel.C__MigrationHistory" PointX="3.375" PointY="0.75" Width="1.5" />
         <AssociationConnector Association="ZlecenieModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
