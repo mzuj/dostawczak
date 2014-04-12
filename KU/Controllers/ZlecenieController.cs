@@ -57,7 +57,7 @@ namespace KU.Controllers
         public ActionResult CompletedConfirmation(int id)
         {
             var completed = db.Zlecenie.Find(id);
-            completed.Status = 3;
+            completed.StatusZlecenie.Nazwa = "Zrealizowane";
             db.SaveChanges();
             return RedirectToAction("Index","Zlecenie");
         }
