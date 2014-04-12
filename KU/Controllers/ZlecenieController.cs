@@ -81,7 +81,7 @@ namespace KU.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier, Status")] Zlecenie zlecenie)
+        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {
