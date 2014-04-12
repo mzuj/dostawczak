@@ -48,6 +48,20 @@ namespace KU.Controllers
             return View(zlecenie);
         }
 
+        [HttpGet]
+        public ActionResult CompletedConfirmation(int? id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CompletedConfirmation(int id)
+        {
+            var completed = db.Zlecenie.Find(id);
+            completed.Status = 3;
+            db.SaveChanges();
+            return RedirectToAction("Index","Zlecenie");
+        }
+
         // GET: /Zlecenie/Create
         public ActionResult Create()
         {

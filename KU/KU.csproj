@@ -220,12 +220,13 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DB Scripts\dbo.Zlecenie.data.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\MembershipModel.edmx.sql" />
-    <Content Include="Models\ZleceniaModel.edmx.sql" />
+    <Content Include="DB Scripts\MembershipModel.edmx.sql" />
+    <Content Include="DB Scripts\ZleceniaModel.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ZlecenieModel.edmx">
@@ -290,6 +291,7 @@
     <Content Include="Views\Zlecenie\Details.cshtml" />
     <Content Include="Views\Zlecenie\Edit.cshtml" />
     <Content Include="Views\Zlecenie\Index.cshtml" />
+    <Content Include="Views\Zlecenie\CompletedConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logic\" />
