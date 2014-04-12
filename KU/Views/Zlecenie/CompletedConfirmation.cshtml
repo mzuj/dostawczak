@@ -1,0 +1,14 @@
+﻿@model KU.Models.Zlecenie
+
+@{
+    ViewBag.Title = "CompletedConfirmation";
+}
+
+<h2>Potwierdź realizację zlecenia.</h2>
+@using (Html.BeginForm())
+{
+    <div style="width:inherit; ">
+        <input type="submit" class="btn btn-success" style="display:inline; width:40%; " value="Potwierdzam" >
+        <button type="button" class="btn btn-danger" style="display: inline; width: 40%; " onclick="location.href = '@Url.Action("Index", "Zlecenie")'">Anuluj</button>
+    </div>
+}

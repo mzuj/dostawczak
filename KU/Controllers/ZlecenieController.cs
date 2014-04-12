@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KU.Models;
+using KU.Logic;
 
 namespace KU.Controllers
 {
     public class ZlecenieController : Controller
     {
         private ZlecenieEntities db = new ZlecenieEntities();
+        StatusIdHelper statusIdHelper = new StatusIdHelper();
 
         // GET: /Zlecenie/
         public ActionResult Index()
@@ -23,7 +25,11 @@ namespace KU.Controllers
             }
             else
             {
+                var idZleceniaOdbioru = statusIdHelper.getStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
+                var idZleceniaDostawy = statusIdHelper.getStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
+
                 var zlecenie = from s in db.Zlecenie
+                               where s.Status.Equals(idZleceniaDostawy) || s.Status.Equals(idZleceniaOdbioru) 
                                select s;
 
                 var zlecenieKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
@@ -46,6 +52,20 @@ namespace KU.Controllers
                 return HttpNotFound();
             }
             return View(zlecenie);
+        }
+
+        [HttpGet]
+        public ActionResult CompletedConfirmation(int? id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CompletedConfirmation(int id)
+        {
+            var completed = db.Zlecenie.Find(id);
+            completed.Status = statusIdHelper.getStatusIdByName("Zrealizowane");
+            db.SaveChanges();
+            return RedirectToAction("Index","Zlecenie");
         }
 
         // GET: /Zlecenie/Create
