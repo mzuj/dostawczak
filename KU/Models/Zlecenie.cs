@@ -26,8 +26,10 @@ namespace KU.Models
         public bool Pobranie_za_przesylke { get; set; }
         public bool Priorytet { get; set; }
         public string Kategoria_zlecenia { get; set; }
-        public string ID { get; set; }
+        public string Kurier { get; set; }
+        public int Status { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
+        public virtual StatusZlecenie StatusZlecenie { get; set; }
     }
 }

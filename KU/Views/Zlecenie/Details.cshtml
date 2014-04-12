@@ -11,7 +11,7 @@
 	<hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Miejsce_nadania)
+            @Html.DisplayName("Miejsce nadania")
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Miejsce_dostawy)
+            @Html.DisplayName("Miejsce dostawy")
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Ilosc_opakowan)
+            @Html.DisplayName("Ilość opakowań")
         </dt>
 
         <dd>
@@ -59,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Rodzaj_opakowan)
+            @Html.DisplayName("Rodzaj opakowań")
         </dt>
 
         <dd>
@@ -67,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Materialy_niebezpieczne)
+            @Html.DisplayName("Materiały niebezpieczne")
         </dt>
 
         <dd>
@@ -75,7 +75,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Pobranie_za_przesylke)
+            @Html.DisplayName("Pobranie za przesyłkę");
         </dt>
 
         <dd>
@@ -91,7 +91,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Kategoria_zlecenia)
+            @Html.DisplayName("Kateogria")
         </dt>
 
         <dd>
@@ -99,20 +99,25 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AspNetUsers.UserName)
+            @Html.DisplayNameFor(model => model.Kurier)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AspNetUsers.UserName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StatusZlecenie.Nazwa)
+        </dd>
+
     </dl>
 </div>
 
-    <button type="button" class="btn btn-success" onclick="location.href = '@Url.Action("NavigateGMaps", "Zlecenie", new { id = Model.ZlecenieID})'">Nawiguj</button>
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("NavigateGMaps", "Zlecenie", new { id = Model.ZlecenieID})'">Nawiguj</button>
+    <br> 
     <br>
-    <button type="button" class="btn btn-success" onclick="location.href = '@Url.Action("Back to List", "Index")'">Powrót do listy</button>
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Zlecenie")'">Powrót do listy</button>
   
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ZlecenieID }) |
-    </p>

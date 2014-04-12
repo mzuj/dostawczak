@@ -17,13 +17,20 @@ namespace KU.Controllers
         // GET: /Zlecenie/
         public ActionResult Index()
         {
-            var zlecenie = from s in db.Zlecenie
-                           select s;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                var zlecenie = from s in db.Zlecenie
+                               select s;
 
-            var zlecenieKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
-            var listaZlecen = zlecenieKuriera.OrderByDescending(s => s.Priorytet);
-            
-            return View(listaZlecen.ToList());
+                var zlecenieKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
+                var listaZlecen = zlecenieKuriera.OrderByDescending(s => s.Priorytet);
+
+                return View(listaZlecen.ToList());
+            }               
         }
         
         // GET: /Zlecenie/Details/5
@@ -44,7 +51,8 @@ namespace KU.Controllers
         // GET: /Zlecenie/Create
         public ActionResult Create()
         {
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName");
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
+            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa");
             return View();
         }
 
@@ -53,7 +61,7 @@ namespace KU.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,ID")] Zlecenie zlecenie)
+        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier, Status")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +70,8 @@ namespace KU.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.ID);
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
+            ViewBag.Status = new SelectList(db.StatusZlecenie);
             return View(zlecenie);
         }
 
@@ -78,7 +87,7 @@ namespace KU.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.ID);
+            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
             return View(zlecenie);
         }
 
@@ -87,7 +96,7 @@ namespace KU.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,ID")] Zlecenie zlecenie)
+        public ActionResult Edit([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +104,7 @@ namespace KU.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.ID);
+            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
             return View(zlecenie);
         }
 

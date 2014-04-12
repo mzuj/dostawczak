@@ -189,6 +189,12 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusZlecenie.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Zlecenie.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
@@ -218,6 +224,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\MembershipModel.edmx.sql" />
+    <Content Include="Models\ZleceniaModel.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ZlecenieModel.edmx">

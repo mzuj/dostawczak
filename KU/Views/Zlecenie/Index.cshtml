@@ -1,19 +1,17 @@
 ﻿@model IEnumerable<KU.Models.Zlecenie>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Zlecenia";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<br>
+<h3 style="display:inline;">Twoje zlecenia <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Zlecenie")'" style="width:auto;">Odśwież</button></h3> 
+<br>
 
     @if (User.Identity.IsAuthenticated) {  
 
         foreach (var item in Model)
         {
+            <br>
             if (item.Priorytet) { 
                 <button type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("Details", "Zlecenie", new { id = item.ZlecenieID })'">
                     @Html.ActionLink(item.Kategoria_zlecenia + ": " + item.ZlecenieID, "Details", new { id = item.ZlecenieID }) <br>
