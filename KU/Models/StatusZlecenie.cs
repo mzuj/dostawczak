@@ -12,8 +12,16 @@ namespace KU.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class StatusZlecenia
+    public partial class StatusZlecenie
     {
+        public StatusZlecenie()
+        {
+            this.Zlecenie = new HashSet<Zlecenie>();
+        }
+    
+        public int Id { get; set; }
         public string Nazwa { get; set; }
+    
+        public virtual ICollection<Zlecenie> Zlecenie { get; set; }
     }
 }

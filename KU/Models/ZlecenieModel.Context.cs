@@ -30,6 +30,6 @@ namespace KU.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Zlecenie> Zlecenie { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<StatusZlecenia> StatusZlecenia { get; set; }
+        public virtual DbSet<StatusZlecenie> StatusZlecenie { get; set; }
     }
 }

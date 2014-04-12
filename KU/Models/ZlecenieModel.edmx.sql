@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/12/2014 11:09:15
+-- Date Created: 04/12/2014 11:41:35
 -- Generated from EDMX file: C:\Users\TomekI\Documents\Visual Studio 2013\Projects\KU\KU\Models\ZlecenieModel.edmx
 -- --------------------------------------------------
 
@@ -52,6 +52,9 @@ GO
 IF OBJECT_ID(N'[dbo].[AspNetUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUsers];
 GO
+IF OBJECT_ID(N'[dbo].[StatusZlecenie]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[StatusZlecenie];
+GO
 IF OBJECT_ID(N'[dbo].[Zlecenie]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Zlecenie];
 GO
@@ -99,7 +102,9 @@ CREATE TABLE [dbo].[Zlecenie] (
     [Pobranie_za_przesylke] bit  NOT NULL,
     [Priorytet] bit  NOT NULL,
     [Kategoria_zlecenia] nvarchar(50)  NULL,
-    [Kurier] nvarchar(128)  NULL
+    [Kurier] nvarchar(128)  NULL,
+    [Status] nvarchar(max)  NOT NULL,
+    [StatusZlecenieId] int  NULL
 );
 GO
 
@@ -112,8 +117,9 @@ CREATE TABLE [dbo].[AspNetUserClaims] (
 );
 GO
 
--- Creating table 'StatusZlecenia'
-CREATE TABLE [dbo].[StatusZlecenia] (
+-- Creating table 'StatusZlecenie'
+CREATE TABLE [dbo].[StatusZlecenie] (
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Nazwa] nvarchar(max)  NOT NULL
 );
 GO
@@ -159,10 +165,10 @@ ADD CONSTRAINT [PK_AspNetUserClaims]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Nazwa] in table 'StatusZlecenia'
-ALTER TABLE [dbo].[StatusZlecenia]
-ADD CONSTRAINT [PK_StatusZlecenia]
-    PRIMARY KEY CLUSTERED ([Nazwa] ASC);
+-- Creating primary key on [Id] in table 'StatusZlecenie'
+ALTER TABLE [dbo].[StatusZlecenie]
+ADD CONSTRAINT [PK_StatusZlecenie]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [AspNetRoles_Id], [AspNetUsers_Id] in table 'AspNetUserRoles'
@@ -233,6 +239,20 @@ ADD CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id]
 CREATE INDEX [IX_FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id]
 ON [dbo].[AspNetUserClaims]
     ([User_Id]);
+GO
+
+-- Creating foreign key on [StatusZlecenieId] in table 'Zlecenie'
+ALTER TABLE [dbo].[Zlecenie]
+ADD CONSTRAINT [FK_ZlecenieStatusZlecenie]
+    FOREIGN KEY ([StatusZlecenieId])
+    REFERENCES [dbo].[StatusZlecenie]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ZlecenieStatusZlecenie'
+CREATE INDEX [IX_FK_ZlecenieStatusZlecenie]
+ON [dbo].[Zlecenie]
+    ([StatusZlecenieId]);
 GO
 
 -- --------------------------------------------------

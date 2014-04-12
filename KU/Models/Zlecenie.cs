@@ -27,7 +27,10 @@ namespace KU.Models
         public bool Priorytet { get; set; }
         public string Kategoria_zlecenia { get; set; }
         public string Kurier { get; set; }
+        public string Status { get; set; }
+        public Nullable<int> StatusZlecenieId { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
+        public virtual StatusZlecenie StatusZlecenie { get; set; }
     }
 }

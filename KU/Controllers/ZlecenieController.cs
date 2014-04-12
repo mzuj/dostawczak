@@ -45,6 +45,7 @@ namespace KU.Controllers
         public ActionResult Create()
         {
             ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
+            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa");
             return View();
         }
 
@@ -53,7 +54,7 @@ namespace KU.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier")] Zlecenie zlecenie)
+        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier, Status")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +64,7 @@ namespace KU.Controllers
             }
 
             ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
+            ViewBag.Status = new SelectList(db.StatusZlecenie);
             return View(zlecenie);
         }
 
@@ -87,7 +89,7 @@ namespace KU.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,ID")] Zlecenie zlecenie)
+        public ActionResult Edit([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {
