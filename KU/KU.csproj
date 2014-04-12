@@ -189,6 +189,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusZlecenia.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Zlecenie.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>

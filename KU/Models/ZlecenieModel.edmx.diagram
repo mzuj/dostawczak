@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="ZlecenieModel.Zlecenie" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="ZlecenieModel.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ZlecenieModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ZlecenieModel.StatusZlecenia" Width="1.75" PointX="8.625" PointY="3.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

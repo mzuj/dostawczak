@@ -44,7 +44,7 @@ namespace KU.Controllers
         // GET: /Zlecenie/Create
         public ActionResult Create()
         {
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName");
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
             return View();
         }
 
@@ -53,7 +53,7 @@ namespace KU.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,ID")] Zlecenie zlecenie)
+        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace KU.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
             return View(zlecenie);
         }
 

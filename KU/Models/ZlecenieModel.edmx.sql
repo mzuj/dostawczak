@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/12/2014 10:56:05
+-- Date Created: 04/12/2014 11:09:15
 -- Generated from EDMX file: C:\Users\TomekI\Documents\Visual Studio 2013\Projects\KU\KU\Models\ZlecenieModel.edmx
 -- --------------------------------------------------
 
@@ -17,17 +17,17 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRoles]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRoles];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUsers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUsers];
+GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Zlecenie_dbo_AspNetUsers_ID]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Zlecenie] DROP CONSTRAINT [FK_dbo_Zlecenie_dbo_AspNetUsers_ID];
@@ -112,6 +112,12 @@ CREATE TABLE [dbo].[AspNetUserClaims] (
 );
 GO
 
+-- Creating table 'StatusZlecenia'
+CREATE TABLE [dbo].[StatusZlecenia] (
+    [Nazwa] nvarchar(max)  NOT NULL
+);
+GO
+
 -- Creating table 'AspNetUserRoles'
 CREATE TABLE [dbo].[AspNetUserRoles] (
     [AspNetRoles_Id] nvarchar(128)  NOT NULL,
@@ -151,6 +157,12 @@ GO
 ALTER TABLE [dbo].[AspNetUserClaims]
 ADD CONSTRAINT [PK_AspNetUserClaims]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Nazwa] in table 'StatusZlecenia'
+ALTER TABLE [dbo].[StatusZlecenia]
+ADD CONSTRAINT [PK_StatusZlecenia]
+    PRIMARY KEY CLUSTERED ([Nazwa] ASC);
 GO
 
 -- Creating primary key on [AspNetRoles_Id], [AspNetUsers_Id] in table 'AspNetUserRoles'
