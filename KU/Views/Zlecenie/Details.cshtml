@@ -108,8 +108,8 @@
 
     </dl>
 </div>
-@Html.ActionLink("Nawiguj", "NavigateGMaps", new { id = Model.ZlecenieID })
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ZlecenieID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<button type="button" class="btn btn-success" onclick="location.href = '@Url.Action("NavigateGMaps", "Zlecenie", new { id = Model.ZlecenieID})'">Nawiguj</button>
+<button type="button" class="btn btn-success" onclick="location.href = '@Url.Action("Back to List", "Index")'">Powrót do listy</button>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ZlecenieID }) |
+    </p>
