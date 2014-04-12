@@ -62,7 +62,7 @@ namespace KU.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.ID);
+            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
             return View(zlecenie);
         }
 
@@ -78,7 +78,7 @@ namespace KU.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.ID);
+            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
             return View(zlecenie);
         }
 
@@ -95,7 +95,7 @@ namespace KU.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.ID);
+            ViewBag.ID = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
             return View(zlecenie);
         }
 

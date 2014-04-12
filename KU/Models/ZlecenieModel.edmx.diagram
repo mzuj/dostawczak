@@ -6,14 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="1fb4b2c01a5d4829aac52ce08944ad80" Name="Diagram1">
         <EntityTypeShape EntityType="ZlecenieModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZlecenieModel.AspNetUserLogins" Width="2" PointX="5.125" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ZlecenieModel.AspNetUsers" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="ZlecenieModel.Zlecenie" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
-        <AssociationConnector Association="ZlecenieModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ZlecenieModel.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" ManuallyRouted="false" />
         <AssociationConnector Association="ZlecenieModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ZlecenieModel.AspNetUserClaims" Width="1.75" PointX="5.25" PointY="8.375" />
-        <AssociationConnector Association="ZlecenieModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
