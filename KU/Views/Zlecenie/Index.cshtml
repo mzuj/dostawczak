@@ -20,6 +20,7 @@
                     Adres: @item.Miejsce_dostawy<br>
                     Odbiorca: @item.Odbiorca<br>
                 </button>
+                <br>
             }
             else { 
                 <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Details", "Zlecenie", new { id = item.ZlecenieID })'">
@@ -27,6 +28,7 @@
                     Adres: @item.Miejsce_dostawy<br>
                     Odbiorca: @item.Odbiorca<br>
                 </button>
+                <br>
             }
         }
 
