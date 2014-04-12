@@ -4,14 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ZlecenieModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ZlecenieModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="ZlecenieModelStoreContainer">
-    <EntitySet Name="AspNetRoles" EntityType="ZlecenieModel.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserLogins" EntityType="ZlecenieModel.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUsers" EntityType="ZlecenieModel.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Zlecenie" EntityType="ZlecenieModel.Store.Zlecenie" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserClaims" EntityType="ZlecenieModel.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StatusZlecenie" EntityType="ZlecenieModel.Store.StatusZlecenie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AspNetRoles" EntityType="ZlecenieModel.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="C__MigrationHistory" EntityType="ZlecenieModel.Store.C__MigrationHistory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserRoles" EntityType="ZlecenieModel.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ZlecenieModel.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -19,6 +20,14 @@
     </AssociationSet>
     <AssociationSet Name="FK_dbo_Zlecenie_dbo_AspNetUsers_ID" Association="ZlecenieModel.Store.FK_dbo_Zlecenie_dbo_AspNetUsers_ID">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Zlecenie" EntitySet="Zlecenie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="ZlecenieModel.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="ZlecenieModel.Store.FK_ZlecenieStatusZlecenie">
+      <End Role="StatusZlecenie" EntitySet="StatusZlecenie" />
       <End Role="Zlecenie" EntitySet="Zlecenie" />
     </AssociationSet>
     <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="ZlecenieModel.Store.FK_AspNetUserRoles_AspNetRoles">
@@ -29,22 +38,7 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="ZlecenieModel.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="ZlecenieModel.Store.FK_ZlecenieStatusZlecenie">
-      <End Role="StatusZlecenie" EntitySet="StatusZlecenie" />
-      <End Role="Zlecenie" EntitySet="Zlecenie" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="AspNetRoles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
   <EntityType Name="AspNetUserLogins">
     <Key>
       <PropertyRef Name="UserId" />
@@ -99,6 +93,23 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nazwa" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
@@ -190,14 +201,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZlecenieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-        </EntityType>
         <EntityType Name="AspNetUserLogins">
           <Key>
             <PropertyRef Name="UserId" />
@@ -220,8 +223,8 @@
           <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="Zlecenie" Relationship="Self.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" FromRole="AspNetUsers" ToRole="Zlecenie" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="ZlecenieModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ZlecenieModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Zlecenie">
           <Key>
@@ -272,12 +275,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="ZlecenieEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="Zlecenie" EntityType="Self.Zlecenie" />
@@ -289,10 +287,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Zlecenie" EntitySet="Zlecenie" />
           </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
           <EntitySet Name="AspNetUserClaims" EntityType="ZlecenieModel.AspNetUserClaims" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="ZlecenieModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -302,6 +296,12 @@
           <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="ZlecenieModel.FK_ZlecenieStatusZlecenie">
             <End Role="StatusZlecenie" EntitySet="StatusZlecenie" />
             <End Role="Zlecenie" EntitySet="Zlecenie" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="ZlecenieModel.AspNetRoles" />
+          <EntitySet Name="C__MigrationHistory" EntityType="ZlecenieModel.C__MigrationHistory" />
+          <AssociationSet Name="AspNetUserRoles" Association="ZlecenieModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetUserClaims">
@@ -348,20 +348,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ZlecenieModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="AspNetUserRoles">
+          <End Type="ZlecenieModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="ZlecenieModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ZlecenieModelStoreContainer" CdmEntityContainer="ZlecenieEntities">
-    <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="IsTypeOf(ZlecenieModel.AspNetRoles)">
-        <MappingFragment StoreEntitySet="AspNetRoles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserLogins">
       <EntityTypeMapping TypeName="IsTypeOf(ZlecenieModel.AspNetUserLogins)">
         <MappingFragment StoreEntitySet="AspNetUserLogins">
@@ -417,6 +431,24 @@
         <MappingFragment StoreEntitySet="StatusZlecenie">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(ZlecenieModel.AspNetRoles)">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="IsTypeOf(ZlecenieModel.C__MigrationHistory)">
+        <MappingFragment StoreEntitySet="C__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

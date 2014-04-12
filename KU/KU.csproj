@@ -189,6 +189,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StatusZlecenie.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
@@ -222,6 +225,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\ZlecenieModel.edmx.sql" />
+    <Content Include="Models\ZlecenieModel2.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ZlecenieModel.edmx">

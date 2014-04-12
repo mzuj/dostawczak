@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/12/2014 17:31:35
+-- Date Created: 04/12/2014 17:57:23
 -- Generated from EDMX file: C:\Users\TomekI\Documents\Visual Studio 2013\Projects\KU\KU\Models\ZlecenieModel.edmx
 -- --------------------------------------------------
 
@@ -17,23 +17,17 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Zlecenie_dbo_AspNetUsers_ID]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Zlecenie] DROP CONSTRAINT [FK_dbo_Zlecenie_dbo_AspNetUsers_ID];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ZlecenieStatusZlecenie]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Zlecenie] DROP CONSTRAINT [FK_ZlecenieStatusZlecenie];
-GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRoles]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRoles];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUsers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUsers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
 GO
 
 -- --------------------------------------------------
@@ -43,35 +37,25 @@ GO
 IF OBJECT_ID(N'[dbo].[AspNetRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetRoles];
 GO
+IF OBJECT_ID(N'[dbo].[AspNetUserClaims]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AspNetUserClaims];
+GO
 IF OBJECT_ID(N'[dbo].[AspNetUserLogins]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUserLogins];
+GO
+IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AspNetUserRoles];
 GO
 IF OBJECT_ID(N'[dbo].[AspNetUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUsers];
 GO
-IF OBJECT_ID(N'[dbo].[Zlecenie]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Zlecenie];
-GO
-IF OBJECT_ID(N'[dbo].[AspNetUserClaims]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AspNetUserClaims];
-GO
-IF OBJECT_ID(N'[dbo].[StatusZlecenie]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[StatusZlecenie];
-GO
-IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AspNetUserRoles];
+IF OBJECT_ID(N'[dbo].[C__MigrationHistory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[C__MigrationHistory];
 GO
 
 -- --------------------------------------------------
 -- Creating all tables
 -- --------------------------------------------------
-
--- Creating table 'AspNetRoles'
-CREATE TABLE [dbo].[AspNetRoles] (
-    [Id] nvarchar(128)  NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
-);
-GO
 
 -- Creating table 'AspNetUserLogins'
 CREATE TABLE [dbo].[AspNetUserLogins] (
@@ -126,22 +110,32 @@ CREATE TABLE [dbo].[StatusZlecenie] (
 );
 GO
 
+-- Creating table 'AspNetRoles'
+CREATE TABLE [dbo].[AspNetRoles] (
+    [Id] nvarchar(128)  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'C__MigrationHistory'
+CREATE TABLE [dbo].[C__MigrationHistory] (
+    [MigrationId] nvarchar(150)  NOT NULL,
+    [ContextKey] nvarchar(300)  NOT NULL,
+    [Model] varbinary(max)  NOT NULL,
+    [ProductVersion] nvarchar(32)  NOT NULL
+);
+GO
+
 -- Creating table 'AspNetUserRoles'
 CREATE TABLE [dbo].[AspNetUserRoles] (
-    [AspNetRoles1_Id] nvarchar(128)  NOT NULL,
-    [AspNetUsers1_Id] nvarchar(128)  NOT NULL
+    [AspNetRoles_Id] nvarchar(128)  NOT NULL,
+    [AspNetUsers_Id] nvarchar(128)  NOT NULL
 );
 GO
 
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
-
--- Creating primary key on [Id] in table 'AspNetRoles'
-ALTER TABLE [dbo].[AspNetRoles]
-ADD CONSTRAINT [PK_AspNetRoles]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
 
 -- Creating primary key on [UserId], [LoginProvider], [ProviderKey] in table 'AspNetUserLogins'
 ALTER TABLE [dbo].[AspNetUserLogins]
@@ -173,10 +167,22 @@ ADD CONSTRAINT [PK_StatusZlecenie]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [AspNetRoles1_Id], [AspNetUsers1_Id] in table 'AspNetUserRoles'
+-- Creating primary key on [Id] in table 'AspNetRoles'
+ALTER TABLE [dbo].[AspNetRoles]
+ADD CONSTRAINT [PK_AspNetRoles]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [MigrationId], [ContextKey] in table 'C__MigrationHistory'
+ALTER TABLE [dbo].[C__MigrationHistory]
+ADD CONSTRAINT [PK_C__MigrationHistory]
+    PRIMARY KEY CLUSTERED ([MigrationId], [ContextKey] ASC);
+GO
+
+-- Creating primary key on [AspNetRoles_Id], [AspNetUsers_Id] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [PK_AspNetUserRoles]
-    PRIMARY KEY CLUSTERED ([AspNetRoles1_Id], [AspNetUsers1_Id] ASC);
+    PRIMARY KEY CLUSTERED ([AspNetRoles_Id], [AspNetUsers_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -234,19 +240,19 @@ ON [dbo].[Zlecenie]
     ([Status]);
 GO
 
--- Creating foreign key on [AspNetRoles1_Id] in table 'AspNetUserRoles'
+-- Creating foreign key on [AspNetRoles_Id] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRoles]
-    FOREIGN KEY ([AspNetRoles1_Id])
+    FOREIGN KEY ([AspNetRoles_Id])
     REFERENCES [dbo].[AspNetRoles]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [AspNetUsers1_Id] in table 'AspNetUserRoles'
+-- Creating foreign key on [AspNetUsers_Id] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUsers]
-    FOREIGN KEY ([AspNetUsers1_Id])
+    FOREIGN KEY ([AspNetUsers_Id])
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -254,7 +260,7 @@ ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUsers]
 -- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles_AspNetUsers'
 CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUsers]
 ON [dbo].[AspNetUserRoles]
-    ([AspNetUsers1_Id]);
+    ([AspNetUsers_Id]);
 GO
 
 -- --------------------------------------------------
