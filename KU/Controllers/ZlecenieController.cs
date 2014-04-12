@@ -17,13 +17,20 @@ namespace KU.Controllers
         // GET: /Zlecenie/
         public ActionResult Index()
         {
-            var zlecenie = from s in db.Zlecenie
-                           select s;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                var zlecenie = from s in db.Zlecenie
+                               select s;
 
-            var zlecenieKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
-            var listaZlecen = zlecenieKuriera.OrderByDescending(s => s.Priorytet);
-            
-            return View(listaZlecen.ToList());
+                var zlecenieKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
+                var listaZlecen = zlecenieKuriera.OrderByDescending(s => s.Priorytet);
+
+                return View(listaZlecen.ToList());
+            }               
         }
         
         // GET: /Zlecenie/Details/5
