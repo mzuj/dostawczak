@@ -1,0 +1,1 @@
+﻿INSERT INTO [dbo].[AspNetUsers] ([Id], [UserName], [PasswordHash], [SecurityStamp], [Discriminator]) VALUES (N'f4156332-2ce7-4cbf-93f1-b785415f68f9', N'TIzdebski', N'ADAq3dQW/Gbsp8x6iBVO591TWOB0WY2/pzdniuN5HPPg5oiMVrngIOcV6uDE6y9tcw==', N'5c4fd432-e968-4aab-b3e1-dc55194dc20a', N'ApplicationUser')
