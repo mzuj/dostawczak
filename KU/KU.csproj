@@ -166,6 +166,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\StatusIdHelper.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.Designer.cs">
       <DependentUpon>201404092310192_InitialCreate.cs</DependentUpon>
@@ -293,9 +294,7 @@
     <Content Include="Views\Zlecenie\Index.cshtml" />
     <Content Include="Views\Zlecenie\CompletedConfirmation.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Logic\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

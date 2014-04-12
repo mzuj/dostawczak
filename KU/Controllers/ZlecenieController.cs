@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KU.Models;
+using KU.Logic;
 
 namespace KU.Controllers
 {
@@ -56,8 +57,9 @@ namespace KU.Controllers
         [HttpPost]
         public ActionResult CompletedConfirmation(int id)
         {
+            StatusIdHelper statusIdHelper = new StatusIdHelper();
             var completed = db.Zlecenie.Find(id);
-            completed.StatusZlecenie.Nazwa = "Zrealizowane";
+            completed.Status = statusIdHelper.getStatusIdByName("Zrealizowane");
             db.SaveChanges();
             return RedirectToAction("Index","Zlecenie");
         }
