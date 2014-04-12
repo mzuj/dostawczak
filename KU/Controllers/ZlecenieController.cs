@@ -14,6 +14,7 @@ namespace KU.Controllers
     public class ZlecenieController : Controller
     {
         private ZlecenieEntities db = new ZlecenieEntities();
+        StatusIdHelper statusIdHelper = new StatusIdHelper();
 
         // GET: /Zlecenie/
         public ActionResult Index()
@@ -24,7 +25,11 @@ namespace KU.Controllers
             }
             else
             {
+                var idZleceniaOdbioru = statusIdHelper.getStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
+                var idZleceniaDostawy = statusIdHelper.getStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
+
                 var zlecenie = from s in db.Zlecenie
+                               where s.Status.Equals(idZleceniaDostawy) || s.Status.Equals(idZleceniaOdbioru) 
                                select s;
 
                 var zlecenieKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
@@ -57,7 +62,6 @@ namespace KU.Controllers
         [HttpPost]
         public ActionResult CompletedConfirmation(int id)
         {
-            StatusIdHelper statusIdHelper = new StatusIdHelper();
             var completed = db.Zlecenie.Find(id);
             completed.Status = statusIdHelper.getStatusIdByName("Zrealizowane");
             db.SaveChanges();
