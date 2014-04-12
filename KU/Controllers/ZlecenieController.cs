@@ -133,5 +133,11 @@ namespace KU.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult NavigateGMaps(long id)
+        {
+            var adress = db.Zlecenie.Find(id).Miejsce_dostawy;
+            return Redirect("http://maps.google.com/maps?" + "q=" + adress);
+        }
     }
 }
