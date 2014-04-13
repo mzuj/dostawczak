@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1fb4b2c01a5d4829aac52ce08944ad80" Name="Diagram1" ZoomLevel="72">
+      <Diagram DiagramId="1fb4b2c01a5d4829aac52ce08944ad80" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="ZlecenieModel.AspNetUsers" PointX="3" PointY="5" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ZlecenieModel.Zlecenie" Width="2.25" PointX="6.5" PointY="2.5" IsExpanded="true" />
         <AssociationConnector ManuallyRouted="false" Association="ZlecenieModel.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" />
@@ -21,6 +21,8 @@
         <AssociationConnector Association="ZlecenieModel.FK_ZlecenieRodzajOpakowania" />
         <AssociationConnector Association="ZlecenieModel.FK_ZlecenieZawartosc" />
         <AssociationConnector Association="ZlecenieModel.AspNetUserRoles1" />
+        <EntityTypeShape EntityType="ZlecenieModel.RodzajZleceniaSet" Width="2" PointX="10.375" PointY="2.625" />
+        <AssociationConnector Association="ZlecenieModel.FK_ZlecenieRodzajZlecenia" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

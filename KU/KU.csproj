@@ -202,6 +202,9 @@
     <Compile Include="Models\RodzajOpakowania.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RodzajZleceniaSet.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StatusZlecenie.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
@@ -225,6 +228,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ZlecenieModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZlecenieModel2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -257,7 +265,7 @@
     <Content Include="Models\ZlecenieModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ZlecenieModel.edmx</DependentUpon>
-      <LastGenOutput>ZlecenieModel.cs</LastGenOutput>
+      <LastGenOutput>ZlecenieModel2.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\dostawczak.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

@@ -7,7 +7,7 @@
 <h2>Szczegóły zlecenia</h2>
 
 <div>
-    <h4>@Model.Kategoria_zlecenia</h4>
+    <h4>@Model.RodzajZleceniaSet.Rodzaj</h4>
     <div style="width:inherit; ">
         <button type="button" style="display:inline; width:49%;" class="btn btn-primary" onclick="location.href = '@Url.Action("NavigateGMaps", "Zlecenie", new { id = Model.ZlecenieID})'">Nawiguj</button>
         <button type="button" style="display:inline; width:49%;" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Zlecenie")'">Powrót do listy</button>
@@ -94,19 +94,13 @@
             @Html.DisplayFor(model => model.Priorytet)
         </dd>
 
-        <dt>
-            @Html.DisplayName("Komentarz nadawcy")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Komentarz_nadawcy)
-        </dd>
 
         <dt>
             @Html.DisplayName("Kateogria")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Kategoria_zlecenia)
+            @Html.DisplayFor(model => model.RodzajZleceniaSet.Rodzaj)
         </dd>
 
         <dt>
@@ -124,6 +118,12 @@
             @Html.DisplayFor(model => model.StatusZlecenie.Nazwa)
         </dd>
 
+        <dt>
+            @Html.DisplayName("Komentarz nadawcy")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Komentarz_nadawcy)
+        </dd>
     </dl>
 </div>
     <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Completed", "Zlecenie", new { id = Model.ZlecenieID })'">Dostarczono</button>

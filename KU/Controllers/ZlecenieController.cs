@@ -69,11 +69,15 @@ namespace KU.Controllers
         [HttpGet]
         public ActionResult DelayCompletion(int? id)
         {
+            ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód");
             return View();
         }
         [HttpPost]
-        public ActionResult DelayCompletion(int id)
+        public ActionResult DelayCompletion(int id, int? PowodPrzelozeniaId)
         {
+            var zle = db.Zlecenie.Find(id);
+            zle.PowodPrzelozeniaId = PowodPrzelozeniaId;
+            db.SaveChanges();
             errandStatusHelper.SetErrandStatus("Do późniejszej realizacji", id);
             return RedirectToAction("Index", "Zlecenie");
         }
@@ -81,11 +85,15 @@ namespace KU.Controllers
         [HttpGet]
         public ActionResult UnableToComplete(int? id)
         {
+            ViewBag.PowodOdrzuceniaId = new SelectList(db.PowodOdrzucenia, "Id", "Powód");
             return View();
         }
         [HttpPost]
-        public ActionResult UnableToComplete(int id)
+        public ActionResult UnableToComplete(int id, int? PowodOdrzuceniaId)
         {
+            var zle = db.Zlecenie.Find(id);
+            zle.PowodOdrzuceniaId = PowodOdrzuceniaId;
+            db.SaveChanges();
             errandStatusHelper.SetErrandStatus("Brak możliwośc realizacji", id);
             return RedirectToAction("Index", "Zlecenie");
         }
@@ -166,7 +174,6 @@ namespace KU.Controllers
             return Redirect("http://maps.google.com/maps?" + "q=" + adress);
         }
 
-        // GET: /Default1/Create
         public ActionResult Create()
         {
             ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
@@ -175,15 +182,14 @@ namespace KU.Controllers
             ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód");
             ViewBag.RodzajOpakowaniaId = new SelectList(db.RodzajOpakowania, "Id", "Rodzaj");
             ViewBag.ZawartoscId = new SelectList(db.Zawartosc, "Id", "Zawartość");
+            ViewBag.RodzajZleceniaId = new SelectList(db.RodzajZleceniaSet, "Id", "Rodzaj");
             return View();
         }
 
-        // POST: /Default1/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Ilosc_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status,Komentarz_kuriera,Komentarz_nadawcy,RodzajOpakowaniaId,ZawartoscId,PowodOdrzuceniaId,PowodPrzelozeniaId")] Zlecenie zlecenie)
+        public ActionResult Create([Bind(Include = "ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Ilosc_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kurier,Status,Komentarz_kuriera,Komentarz_nadawcy,RodzajOpakowaniaId,ZawartoscId,PowodOdrzuceniaId,PowodPrzelozeniaId,RodzajZleceniaId")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {
@@ -198,6 +204,7 @@ namespace KU.Controllers
             ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód", zlecenie.PowodPrzelozeniaId);
             ViewBag.RodzajOpakowaniaId = new SelectList(db.RodzajOpakowania, "Id", "Rodzaj", zlecenie.RodzajOpakowaniaId);
             ViewBag.ZawartoscId = new SelectList(db.Zawartosc, "Id", "Zawartość", zlecenie.ZawartoscId);
+            ViewBag.RodzajZleceniaId = new SelectList(db.RodzajZleceniaSet, "Id", "Rodzaj", zlecenie.RodzajZleceniaId);
             return View(zlecenie);
         }
     }

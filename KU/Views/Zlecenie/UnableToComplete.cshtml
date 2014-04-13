@@ -1,8 +1,17 @@
 ﻿@model KU.Models.Zlecenie
 
 <h2>Czy oznaczyć zlecenie jako niemożliwe do realizacji?</h2>
+
+
 @using (Html.BeginForm())
 {
+<div class="form-group">
+    @Html.Label("Podaj przyczynę", new { @class = "control-label col-md-2" })
+    <div class="col-md-push-0">
+        @Html.DropDownList("PowodOdrzuceniaId", String.Empty)
+        @Html.ValidationMessageFor(model => model.PowodOdrzuceniaId)
+    </div>
+</div>
     <div style="width:inherit; ">
         <input type="submit" class="btn btn-success" style="display:inline; width:49%; " value="Potwierdzam">
         <button type="button" class="btn btn-danger" style="display: inline; width: 49%; " onclick="location.href = '@Url.Action("Index", "Zlecenie")'">Anuluj</button>

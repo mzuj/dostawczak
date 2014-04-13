@@ -23,15 +23,15 @@ namespace KU.Models
         public bool Materialy_niebezpieczne { get; set; }
         public bool Pobranie_za_przesylke { get; set; }
         public bool Priorytet { get; set; }
-        public string Kategoria_zlecenia { get; set; }
         public string Kurier { get; set; }
         public int Status { get; set; }
         public string Komentarz_kuriera { get; set; }
         public string Komentarz_nadawcy { get; set; }
-        public int RodzajOpakowaniaId { get; set; }
-        public int ZawartoscId { get; set; }
+        public Nullable<int> RodzajOpakowaniaId { get; set; }
+        public Nullable<int> ZawartoscId { get; set; }
         public Nullable<int> PowodOdrzuceniaId { get; set; }
         public Nullable<int> PowodPrzelozeniaId { get; set; }
+        public Nullable<int> RodzajZleceniaId { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual StatusZlecenie StatusZlecenie { get; set; }
@@ -39,5 +39,6 @@ namespace KU.Models
         public virtual PowodPrzelozeniaSet PowodPrzelozeniaSet { get; set; }
         public virtual RodzajOpakowania RodzajOpakowania { get; set; }
         public virtual Zawartosc Zawartosc1 { get; set; }
+        public virtual RodzajZleceniaSet RodzajZleceniaSet { get; set; }
     }
 }

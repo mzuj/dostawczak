@@ -36,5 +36,6 @@ namespace KU.Models
         public virtual DbSet<PowodPrzelozeniaSet> PowodPrzelozeniaSet { get; set; }
         public virtual DbSet<RodzajOpakowania> RodzajOpakowania { get; set; }
         public virtual DbSet<Zawartosc> Zawartosc { get; set; }
+        public virtual DbSet<RodzajZleceniaSet> RodzajZleceniaSet { get; set; }
     }
 }

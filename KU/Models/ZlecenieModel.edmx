@@ -80,6 +80,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Rodzaj" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="RodzajZleceniaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rodzaj" Type="text" Nullable="false" />
+        </EntityType>
         <EntityType Name="StatusZlecenie">
           <Key>
             <PropertyRef Name="Id" />
@@ -99,23 +106,23 @@
             <PropertyRef Name="ZlecenieID" />
           </Key>
           <Property Name="ZlecenieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Miejsce_nadania" Type="nvarchar" MaxLength="100" />
-          <Property Name="Miejsce_dostawy" Type="nvarchar" MaxLength="100" />
-          <Property Name="Odbiorca" Type="nvarchar" MaxLength="100" />
-          <Property Name="Zleceniodawca" Type="nvarchar" MaxLength="100" />
+          <Property Name="Miejsce_nadania" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Miejsce_dostawy" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Odbiorca" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Zleceniodawca" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Ilosc_opakowan" Type="int" />
           <Property Name="Materialy_niebezpieczne" Type="bit" Nullable="false" />
           <Property Name="Pobranie_za_przesylke" Type="bit" Nullable="false" />
           <Property Name="Priorytet" Type="bit" Nullable="false" />
-          <Property Name="Kategoria_zlecenia" Type="nvarchar" MaxLength="50" />
           <Property Name="Kurier" Type="nvarchar" MaxLength="128" />
           <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="Komentarz_kuriera" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Komentarz_nadawcy" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="RodzajOpakowaniaId" Type="int" Nullable="false" />
-          <Property Name="ZawartoscId" Type="int" Nullable="false" />
+          <Property Name="Komentarz_kuriera" Type="nvarchar(max)" />
+          <Property Name="Komentarz_nadawcy" Type="nvarchar(max)" />
+          <Property Name="RodzajOpakowaniaId" Type="int" />
+          <Property Name="ZawartoscId" Type="int" />
           <Property Name="PowodOdrzuceniaId" Type="int" />
           <Property Name="PowodPrzelozeniaId" Type="int" />
+          <Property Name="RodzajZleceniaId" Type="int" />
         </EntityType>
         <Association Name="FK_AspNetUserRoles_AspNetRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
@@ -166,7 +173,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ZlecenieRodzajOpakowania">
-          <End Role="RodzajOpakowania" Type="Self.RodzajOpakowania" Multiplicity="1" />
+          <End Role="RodzajOpakowania" Type="Self.RodzajOpakowania" Multiplicity="0..1" />
           <End Role="Zlecenie" Type="Self.Zlecenie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RodzajOpakowania">
@@ -174,6 +181,18 @@
             </Principal>
             <Dependent Role="Zlecenie">
               <PropertyRef Name="RodzajOpakowaniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZlecenieRodzajZlecenia">
+          <End Role="RodzajZleceniaSet" Type="Self.RodzajZleceniaSet" Multiplicity="0..1" />
+          <End Role="Zlecenie" Type="Self.Zlecenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajZleceniaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="RodzajZleceniaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -190,7 +209,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ZlecenieZawartosc">
-          <End Role="Zawartosc" Type="Self.Zawartosc" Multiplicity="1" />
+          <End Role="Zawartosc" Type="Self.Zawartosc" Multiplicity="0..1" />
           <End Role="Zlecenie" Type="Self.Zlecenie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zawartosc">
@@ -211,6 +230,7 @@
           <EntitySet Name="PowodOdrzucenia" EntityType="Self.PowodOdrzucenia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PowodPrzelozeniaSet" EntityType="Self.PowodPrzelozeniaSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RodzajOpakowania" EntityType="Self.RodzajOpakowania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RodzajZleceniaSet" EntityType="Self.RodzajZleceniaSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StatusZlecenie" EntityType="Self.StatusZlecenie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zawartosc" EntityType="Self.Zawartosc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zlecenie" EntityType="Self.Zlecenie" Schema="dbo" store:Type="Tables" />
@@ -232,6 +252,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ZlecenieRodzajOpakowania" Association="Self.FK_ZlecenieRodzajOpakowania">
             <End Role="RodzajOpakowania" EntitySet="RodzajOpakowania" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZlecenieRodzajZlecenia" Association="Self.FK_ZlecenieRodzajZlecenia">
+            <End Role="RodzajZleceniaSet" EntitySet="RodzajZleceniaSet" />
             <End Role="Zlecenie" EntitySet="Zlecenie" />
           </AssociationSet>
           <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="Self.FK_ZlecenieStatusZlecenie">
@@ -277,29 +301,30 @@
             <PropertyRef Name="ZlecenieID" />
           </Key>
           <Property Name="ZlecenieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Miejsce_nadania" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Miejsce_dostawy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Odbiorca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Zleceniodawca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Ilosc_opakowan" Type="Int32" />
+          <Property Name="Miejsce_nadania" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miejsce_dostawy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Odbiorca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Zleceniodawca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ilosc_opakowan" Type="Int32" Nullable="true" />
           <Property Name="Materialy_niebezpieczne" Type="Boolean" Nullable="false" />
           <Property Name="Pobranie_za_przesylke" Type="Boolean" Nullable="false" />
           <Property Name="Priorytet" Type="Boolean" Nullable="false" />
-          <Property Name="Kategoria_zlecenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Kurier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Kurier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" FromRole="Zlecenie" ToRole="AspNetUsers" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="StatusZlecenie" Relationship="ZlecenieModel.FK_ZlecenieStatusZlecenie" FromRole="Zlecenie" ToRole="StatusZlecenie" />
-          <Property Name="Komentarz_kuriera" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Komentarz_nadawcy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RodzajOpakowaniaId" Type="Int32" Nullable="false" />
-          <Property Name="ZawartoscId" Type="Int32" Nullable="false" />
-          <Property Name="PowodOdrzuceniaId" Type="Int32" />
-          <Property Name="PowodPrzelozeniaId" Type="Int32" />
+          <Property Name="Komentarz_kuriera" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Komentarz_nadawcy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="RodzajOpakowaniaId" Type="Int32" Nullable="true" />
+          <Property Name="ZawartoscId" Type="Int32" Nullable="true" />
+          <Property Name="PowodOdrzuceniaId" Type="Int32" Nullable="true" />
+          <Property Name="PowodPrzelozeniaId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="PowodOdrzucenia" Relationship="ZlecenieModel.FK_ZleceniePowodOdrzucenia" FromRole="Zlecenie" ToRole="PowodOdrzucenia" />
           <NavigationProperty Name="PowodPrzelozeniaSet" Relationship="ZlecenieModel.FK_ZleceniePowodPrzelozenia" FromRole="Zlecenie" ToRole="PowodPrzelozeniaSet" />
           <NavigationProperty Name="RodzajOpakowania" Relationship="ZlecenieModel.FK_ZlecenieRodzajOpakowania" FromRole="Zlecenie" ToRole="RodzajOpakowania" />
           <NavigationProperty Name="Zawartosc1" Relationship="ZlecenieModel.FK_ZlecenieZawartosc" FromRole="Zlecenie" ToRole="Zawartosc" />
+          <Property Name="RodzajZleceniaId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="RodzajZleceniaSet" Relationship="ZlecenieModel.FK_ZlecenieRodzajZlecenia" FromRole="Zlecenie" ToRole="RodzajZleceniaSet" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -376,6 +401,11 @@
           <AssociationSet Name="AspNetUserRoles1" Association="ZlecenieModel.AspNetUserRoles1">
             <End EntitySet="AspNetRoles" Role="AspNetRoles" />
             <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="RodzajZleceniaSet" EntityType="ZlecenieModel.RodzajZleceniaSet" />
+          <AssociationSet Name="FK_ZlecenieRodzajZlecenia" Association="ZlecenieModel.FK_ZlecenieRodzajZlecenia">
+            <End Role="RodzajZleceniaSet" EntitySet="RodzajZleceniaSet" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetUserClaims">
@@ -497,7 +527,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ZlecenieRodzajOpakowania">
-          <End Type="ZlecenieModel.RodzajOpakowania" Role="RodzajOpakowania" Multiplicity="1" />
+          <End Type="ZlecenieModel.RodzajOpakowania" Role="RodzajOpakowania" Multiplicity="0..1" />
           <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RodzajOpakowania">
@@ -509,7 +539,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ZlecenieZawartosc">
-          <End Type="ZlecenieModel.Zawartosc" Role="Zawartosc" Multiplicity="1" />
+          <End Type="ZlecenieModel.Zawartosc" Role="Zawartosc" Multiplicity="0..1" />
           <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zawartosc">
@@ -523,6 +553,26 @@
         <Association Name="AspNetUserRoles1">
           <End Type="ZlecenieModel.AspNetRoles" Multiplicity="*" Role="AspNetRoles" />
           <End Type="ZlecenieModel.AspNetUsers" Multiplicity="*" Role="AspNetUsers" />
+        </Association>
+        <EntityType Name="RodzajZleceniaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZlecenieRodzajZlecenia" FromRole="RodzajZleceniaSet" ToRole="Zlecenie" />
+          <Property Name="Rodzaj" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_ZlecenieRodzajZlecenia">
+          <End Type="ZlecenieModel.RodzajZleceniaSet" Role="RodzajZleceniaSet" Multiplicity="0..1" />
+          <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajZleceniaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="RodzajZleceniaId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -553,7 +603,8 @@
     <EntitySetMapping Name="Zlecenie">
       <EntityTypeMapping TypeName="IsTypeOf(ZlecenieModel.Zlecenie)">
         <MappingFragment StoreEntitySet="Zlecenie">
-          <ScalarProperty Name="PowodPrzelozeniaId" ColumnName="PowodPrzelozeniaId" />
+          <ScalarProperty Name="RodzajZleceniaId" ColumnName="RodzajZleceniaId" />
+                <ScalarProperty Name="PowodPrzelozeniaId" ColumnName="PowodPrzelozeniaId" />
                 <ScalarProperty Name="PowodOdrzuceniaId" ColumnName="PowodOdrzuceniaId" />
                 <ScalarProperty Name="ZawartoscId" ColumnName="ZawartoscId" />
                 <ScalarProperty Name="RodzajOpakowaniaId" ColumnName="RodzajOpakowaniaId" />
@@ -568,7 +619,6 @@
           <ScalarProperty Name="Materialy_niebezpieczne" ColumnName="Materialy_niebezpieczne" />
           <ScalarProperty Name="Pobranie_za_przesylke" ColumnName="Pobranie_za_przesylke" />
           <ScalarProperty Name="Priorytet" ColumnName="Priorytet" />
-          <ScalarProperty Name="Kategoria_zlecenia" ColumnName="Kategoria_zlecenia" />
           <ScalarProperty Name="Kurier" ColumnName="Kurier" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
@@ -650,6 +700,14 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="RodzajZleceniaSet">
+            <EntityTypeMapping TypeName="ZlecenieModel.RodzajZleceniaSet">
+              <MappingFragment StoreEntitySet="RodzajZleceniaSet">
+                <ScalarProperty Name="Rodzaj" ColumnName="Rodzaj" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
