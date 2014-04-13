@@ -119,10 +119,10 @@
 
     </dl>
 </div>
-    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("CompletedConfirmation", "Zlecenie", new { id = Model.ZlecenieID })'">Dostarczono</button>
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Completed", "Zlecenie", new { id = Model.ZlecenieID })'">Dostarczono</button>
     <br>
     <br>
-    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("CompletedConfirmation", "Zlecenie", new { id = Model.ZlecenieID })'">Brak możliwośc realizacji</button>
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("UnableToComplete", "Zlecenie", new { id = Model.ZlecenieID })'">Brak możliwośc realizacji</button>
     <br>
     <br>
-    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("CompletedConfirmation", "Zlecenie", new { id = Model.ZlecenieID })'">Do późniejszej realizacji</button>
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("DelayCompletion", "Zlecenie", new { id = Model.ZlecenieID })'">Do późniejszej realizacji</button>
