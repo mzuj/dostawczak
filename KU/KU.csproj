@@ -306,6 +306,7 @@
     <Content Include="Views\Zlecenie\Completed.cshtml" />
     <Content Include="Views\Zlecenie\DelayCompletion.cshtml" />
     <Content Include="Views\Zlecenie\UnableToComplete.cshtml" />
+    <Content Include="Views\Zlecenie\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

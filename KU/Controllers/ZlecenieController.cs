@@ -165,5 +165,40 @@ namespace KU.Controllers
             var adress = db.Zlecenie.Find(id).Miejsce_dostawy;
             return Redirect("http://maps.google.com/maps?" + "q=" + adress);
         }
+
+        // GET: /Default1/Create
+        public ActionResult Create()
+        {
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
+            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa");
+            ViewBag.PowodOdrzuceniaId = new SelectList(db.PowodOdrzucenia, "Id", "Powód");
+            ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód");
+            ViewBag.RodzajOpakowaniaId = new SelectList(db.RodzajOpakowania, "Id", "Rodzaj");
+            ViewBag.ZawartoscId = new SelectList(db.Zawartosc, "Id", "Zawartość");
+            return View();
+        }
+
+        // POST: /Default1/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Ilosc_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status,Komentarz_kuriera,Komentarz_nadawcy,RodzajOpakowaniaId,ZawartoscId,PowodOdrzuceniaId,PowodPrzelozeniaId")] Zlecenie zlecenie)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Zlecenie.Add(zlecenie);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
+            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa", zlecenie.Status);
+            ViewBag.PowodOdrzuceniaId = new SelectList(db.PowodOdrzucenia, "Id", "Powód", zlecenie.PowodOdrzuceniaId);
+            ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód", zlecenie.PowodPrzelozeniaId);
+            ViewBag.RodzajOpakowaniaId = new SelectList(db.RodzajOpakowania, "Id", "Rodzaj", zlecenie.RodzajOpakowaniaId);
+            ViewBag.ZawartoscId = new SelectList(db.Zawartosc, "Id", "Zawartość", zlecenie.ZawartoscId);
+            return View(zlecenie);
+        }
     }
 }
