@@ -193,10 +193,7 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PowodOdrzucenia.cs">
-      <DependentUpon>ZlecenieModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PowodPrzelozenia.cs">
+    <Compile Include="Models\PowodPrzelozeniaSet.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RodzajOpakowania.cs">
@@ -224,7 +221,12 @@
     <Compile Include="Models\ZlecenieModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ZlecenieModel.edmx</DependentUpon>
+      <DependentUpon>PowodPrzelozenia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PowodPrzelozenia.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PowodPrzelozenia.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -240,23 +242,24 @@
     <Content Include="Content\Site.css" />
     <Content Include="DB Scripts\MembershipModel.edmx.sql" />
     <Content Include="DB Scripts\ZleceniaModel.edmx.sql" />
+    <Content Include="Models\ZlecenieModelv2.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\ZlecenieModel.edmx">
+    <Compile Include="Models\PowodPrzelozenia.cs">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ZlecenieModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+      <LastGenOutput>PowodPrzelozenia.Designer.cs</LastGenOutput>
+    </Compile>
     <Content Include="Models\ZlecenieModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ZlecenieModel.edmx</DependentUpon>
+      <DependentUpon>PowodPrzelozenia.cs</DependentUpon>
       <LastGenOutput>ZlecenieModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ZlecenieModel.edmx.diagram">
-      <DependentUpon>ZlecenieModel.edmx</DependentUpon>
+      <DependentUpon>PowodPrzelozenia.cs</DependentUpon>
     </Content>
     <Content Include="Models\ZlecenieModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ZlecenieModel.edmx</DependentUpon>
+      <DependentUpon>PowodPrzelozenia.cs</DependentUpon>
       <LastGenOutput>ZlecenieModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\dostawczak.pubxml" />
