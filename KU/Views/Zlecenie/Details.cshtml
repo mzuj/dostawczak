@@ -4,10 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły zlecenia</h2>
 
 <div>
-    <h4>Zlecenie</h4>
+    <h4>@Model.Kategoria_zlecenia</h4>
+    <div style="width:inherit; ">
+        <button type="button" style="display:inline; width:49%;" class="btn btn-primary" onclick="location.href = '@Url.Action("NavigateGMaps", "Zlecenie", new { id = Model.ZlecenieID})'">Nawiguj</button>
+        <button type="button" style="display:inline; width:49%;" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Zlecenie")'">Powrót do listy</button>
+    </div>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
@@ -115,11 +119,10 @@
 
     </dl>
 </div>
-    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("NavigateGMaps", "Zlecenie", new { id = Model.ZlecenieID})'">Nawiguj</button>
-    <br> 
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Completed", "Zlecenie", new { id = Model.ZlecenieID })'">Dostarczono</button>
     <br>
-    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("CompletedConfirmation", "Zlecenie", new { id = Model.ZlecenieID })'">Dostarczono</button>
-    <br> 
     <br>
-    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Zlecenie")'">Powrót do listy</button>
-  
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("UnableToComplete", "Zlecenie", new { id = Model.ZlecenieID })'">Brak możliwośc realizacji</button>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("DelayCompletion", "Zlecenie", new { id = Model.ZlecenieID })'">Do późniejszej realizacji</button>

@@ -14,7 +14,7 @@ namespace KU.Controllers
     public class ZlecenieController : Controller
     {
         private ZlecenieEntities db = new ZlecenieEntities();
-        StatusIdHelper statusIdHelper = new StatusIdHelper();
+        ErrandStatusHelper errandStatusHelper = new ErrandStatusHelper();
 
         // GET: /Zlecenie/
         public ActionResult Index()
@@ -25,8 +25,8 @@ namespace KU.Controllers
             }
             else
             {
-                var idZleceniaOdbioru = statusIdHelper.getStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
-                var idZleceniaDostawy = statusIdHelper.getStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
+                var idZleceniaOdbioru = errandStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
+                var idZleceniaDostawy = errandStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
 
                 var zlecenie = from s in db.Zlecenie
                                where s.Status.Equals(idZleceniaDostawy) || s.Status.Equals(idZleceniaOdbioru) 
@@ -55,17 +55,39 @@ namespace KU.Controllers
         }
 
         [HttpGet]
-        public ActionResult CompletedConfirmation(int? id)
+        public ActionResult Completed(int? id)
         {
             return View();
         }
         [HttpPost]
-        public ActionResult CompletedConfirmation(int id)
+        public ActionResult Completed(int id)
         {
-            var completed = db.Zlecenie.Find(id);
-            completed.Status = statusIdHelper.getStatusIdByName("Zrealizowane");
-            db.SaveChanges();
+            errandStatusHelper.SetErrandStatus("Zrealizowane", id);
             return RedirectToAction("Index","Zlecenie");
+        }
+
+        [HttpGet]
+        public ActionResult DelayCompletion(int? id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DelayCompletion(int id)
+        {
+            errandStatusHelper.SetErrandStatus("Do późniejszej realizacji", id);
+            return RedirectToAction("Index", "Zlecenie");
+        }
+
+        [HttpGet]
+        public ActionResult UnableToComplete(int? id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UnableToComplete(int id)
+        {
+            errandStatusHelper.SetErrandStatus("Brak możliwośc realizacji", id);
+            return RedirectToAction("Index", "Zlecenie");
         }
 
         // GET: /Zlecenie/Create
@@ -81,7 +103,7 @@ namespace KU.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier, Status")] Zlecenie zlecenie)
+        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status")] Zlecenie zlecenie)
         {
             if (ModelState.IsValid)
             {

@@ -166,7 +166,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logic\StatusIdHelper.cs" />
+    <Compile Include="Logic\ErrandStatusHelper.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.Designer.cs">
       <DependentUpon>201404092310192_InitialCreate.cs</DependentUpon>
@@ -292,7 +292,9 @@
     <Content Include="Views\Zlecenie\Details.cshtml" />
     <Content Include="Views\Zlecenie\Edit.cshtml" />
     <Content Include="Views\Zlecenie\Index.cshtml" />
-    <Content Include="Views\Zlecenie\CompletedConfirmation.cshtml" />
+    <Content Include="Views\Zlecenie\Completed.cshtml" />
+    <Content Include="Views\Zlecenie\DelayCompletion.cshtml" />
+    <Content Include="Views\Zlecenie\UnableToComplete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
