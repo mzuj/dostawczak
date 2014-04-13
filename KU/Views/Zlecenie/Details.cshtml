@@ -47,11 +47,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Zawartosc)
+            @Html.DisplayName("Zawartość")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Zawartosc)
+            @Html.DisplayFor(model => model.Zawartosc1.Zawartość)
         </dd>
 
         <dt>
@@ -67,7 +67,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Rodzaj_opakowan)
+            @Html.DisplayFor(model => model.RodzajOpakowania.Rodzaj)
         </dd>
 
         <dt>
@@ -92,6 +92,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.Priorytet)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Komentarz nadawcy")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Komentarz_nadawcy)
         </dd>
 
         <dt>

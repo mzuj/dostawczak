@@ -90,32 +90,7 @@ namespace KU.Controllers
             return RedirectToAction("Index", "Zlecenie");
         }
 
-        // GET: /Zlecenie/Create
-        public ActionResult Create()
-        {
-            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
-            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa");
-            return View();
-        }
-
-        // POST: /Zlecenie/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status")] Zlecenie zlecenie)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Zlecenie.Add(zlecenie);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
-            ViewBag.Status = new SelectList(db.StatusZlecenie);
-            return View(zlecenie);
-        }
+       
 
         // GET: /Zlecenie/Edit/5
         public ActionResult Edit(int? id)
