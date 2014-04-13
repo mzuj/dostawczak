@@ -14,7 +14,7 @@
             <br>
             if (item.Priorytet) { 
                 <button type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("Details", "Zlecenie", new { id = item.ZlecenieID })'">
-                    @Html.ActionLink(item.RodzajZleceniaSet.Rodzaj + ": " + item.ZlecenieID, "Details", new { id = item.ZlecenieID }) <br>
+                    @Html.ActionLink(item.RodzajZleceniaSet.Rodzaj + ": " + item.ZlecenieID + "PRIORYTET", "Details", new { id = item.ZlecenieID }) <br>
                     Adres: @item.Miejsce_dostawy<br>
                     Odbiorca: @item.Odbiorca<br>
                 </button>
