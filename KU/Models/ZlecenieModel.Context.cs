@@ -32,5 +32,9 @@ namespace KU.Models
         public virtual DbSet<StatusZlecenie> StatusZlecenie { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<PowodOdrzucenia> PowodOdrzucenia { get; set; }
+        public virtual DbSet<PowodPrzelozeniaSet> PowodPrzelozeniaSet { get; set; }
+        public virtual DbSet<RodzajOpakowania> RodzajOpakowania { get; set; }
+        public virtual DbSet<Zawartosc> Zawartosc { get; set; }
     }
 }
