@@ -248,6 +248,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="DB Scripts\MembershipModel.edmx.sql" />
     <Content Include="DB Scripts\ZleceniaModel.edmx.sql" />
+    <Content Include="Models\ZlecenieModel.edmx.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ZlecenieModel.edmx">
