@@ -69,11 +69,15 @@ namespace KU.Controllers
         [HttpGet]
         public ActionResult DelayCompletion(int? id)
         {
+            ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód");
             return View();
         }
         [HttpPost]
-        public ActionResult DelayCompletion(int id)
+        public ActionResult DelayCompletion(int id, int? PowodPrzelozeniaId)
         {
+            var zle = db.Zlecenie.Find(id);
+            zle.PowodPrzelozeniaId = PowodPrzelozeniaId;
+            db.SaveChanges();
             errandStatusHelper.SetErrandStatus("Do późniejszej realizacji", id);
             return RedirectToAction("Index", "Zlecenie");
         }
@@ -81,41 +85,20 @@ namespace KU.Controllers
         [HttpGet]
         public ActionResult UnableToComplete(int? id)
         {
+            ViewBag.PowodOdrzuceniaId = new SelectList(db.PowodOdrzucenia, "Id", "Powód");
             return View();
         }
         [HttpPost]
-        public ActionResult UnableToComplete(int id)
+        public ActionResult UnableToComplete(int id, int? PowodOdrzuceniaId)
         {
+            var zle = db.Zlecenie.Find(id);
+            zle.PowodOdrzuceniaId = PowodOdrzuceniaId;
+            db.SaveChanges();
             errandStatusHelper.SetErrandStatus("Brak możliwośc realizacji", id);
             return RedirectToAction("Index", "Zlecenie");
         }
 
-        // GET: /Zlecenie/Create
-        public ActionResult Create()
-        {
-            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
-            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa");
-            return View();
-        }
-
-        // POST: /Zlecenie/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Zawartosc,Ilosc_opakowan,Rodzaj_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kategoria_zlecenia,Kurier,Status")] Zlecenie zlecenie)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Zlecenie.Add(zlecenie);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
-            ViewBag.Status = new SelectList(db.StatusZlecenie);
-            return View(zlecenie);
-        }
+       
 
         // GET: /Zlecenie/Edit/5
         public ActionResult Edit(int? id)
@@ -189,6 +172,40 @@ namespace KU.Controllers
         {
             var adress = db.Zlecenie.Find(id).Miejsce_dostawy;
             return Redirect("http://maps.google.com/maps?" + "q=" + adress);
+        }
+
+        public ActionResult Create()
+        {
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName");
+            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa");
+            ViewBag.PowodOdrzuceniaId = new SelectList(db.PowodOdrzucenia, "Id", "Powód");
+            ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód");
+            ViewBag.RodzajOpakowaniaId = new SelectList(db.RodzajOpakowania, "Id", "Rodzaj");
+            ViewBag.ZawartoscId = new SelectList(db.Zawartosc, "Id", "Zawartość");
+            ViewBag.RodzajZleceniaId = new SelectList(db.RodzajZleceniaSet, "Id", "Rodzaj");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ZlecenieID,Miejsce_nadania,Miejsce_dostawy,Odbiorca,Zleceniodawca,Ilosc_opakowan,Materialy_niebezpieczne,Pobranie_za_przesylke,Priorytet,Kurier,Status,Komentarz_kuriera,Komentarz_nadawcy,RodzajOpakowaniaId,ZawartoscId,PowodOdrzuceniaId,PowodPrzelozeniaId,RodzajZleceniaId")] Zlecenie zlecenie)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Zlecenie.Add(zlecenie);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Kurier = new SelectList(db.AspNetUsers, "Id", "UserName", zlecenie.Kurier);
+            ViewBag.Status = new SelectList(db.StatusZlecenie, "Id", "Nazwa", zlecenie.Status);
+            ViewBag.PowodOdrzuceniaId = new SelectList(db.PowodOdrzucenia, "Id", "Powód", zlecenie.PowodOdrzuceniaId);
+            ViewBag.PowodPrzelozeniaId = new SelectList(db.PowodPrzelozeniaSet, "Id", "Powód", zlecenie.PowodPrzelozeniaId);
+            ViewBag.RodzajOpakowaniaId = new SelectList(db.RodzajOpakowania, "Id", "Rodzaj", zlecenie.RodzajOpakowaniaId);
+            ViewBag.ZawartoscId = new SelectList(db.Zawartosc, "Id", "Zawartość", zlecenie.ZawartoscId);
+            ViewBag.RodzajZleceniaId = new SelectList(db.RodzajZleceniaSet, "Id", "Rodzaj", zlecenie.RodzajZleceniaId);
+            return View(zlecenie);
         }
     }
 }

@@ -4,200 +4,270 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ZlecenieModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="ZlecenieModelStoreContainer">
-    <EntitySet Name="AspNetUserLogins" EntityType="ZlecenieModel.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AspNetUsers" EntityType="ZlecenieModel.Store.AspNetUsers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Zlecenie" EntityType="ZlecenieModel.Store.Zlecenie" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AspNetUserClaims" EntityType="ZlecenieModel.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="StatusZlecenie" EntityType="ZlecenieModel.Store.StatusZlecenie" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AspNetRoles" EntityType="ZlecenieModel.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="C__MigrationHistory" EntityType="ZlecenieModel.Store.C__MigrationHistory" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="AspNetUserRoles" EntityType="ZlecenieModel.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ZlecenieModel.Store.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_Zlecenie_dbo_AspNetUsers_ID" Association="ZlecenieModel.Store.FK_dbo_Zlecenie_dbo_AspNetUsers_ID">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Zlecenie" EntitySet="Zlecenie" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="ZlecenieModel.Store.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="ZlecenieModel.Store.FK_ZlecenieStatusZlecenie">
-      <End Role="StatusZlecenie" EntitySet="StatusZlecenie" />
-      <End Role="Zlecenie" EntitySet="Zlecenie" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="ZlecenieModel.Store.FK_AspNetUserRoles_AspNetRoles">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="ZlecenieModel.Store.FK_AspNetUserRoles_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="AspNetUserLogins">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="LoginProvider" />
-      <PropertyRef Name="ProviderKey" />
-    </Key>
-    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="LoginProvider" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="ProviderKey" Type="nvarchar" Nullable="false" MaxLength="128" />
-  </EntityType>
-  <EntityType Name="AspNetUsers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="UserName" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Discriminator" Type="nvarchar" Nullable="false" MaxLength="128" />
-  </EntityType>
-  <EntityType Name="Zlecenie">
-    <Key>
-      <PropertyRef Name="ZlecenieID" />
-    </Key>
-    <Property Name="ZlecenieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Miejsce_nadania" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Miejsce_dostawy" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Odbiorca" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Zleceniodawca" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Zawartosc" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Ilosc_opakowan" Type="int" Nullable="true" />
-    <Property Name="Rodzaj_opakowan" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="Materialy_niebezpieczne" Type="bit" Nullable="false" />
-    <Property Name="Pobranie_za_przesylke" Type="bit" Nullable="false" />
-    <Property Name="Priorytet" Type="bit" Nullable="false" />
-    <Property Name="Kategoria_zlecenia" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Kurier" Type="nvarchar" Nullable="true" MaxLength="128" />
-    <Property Name="Status" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AspNetUserClaims">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="User_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-  </EntityType>
-  <EntityType Name="StatusZlecenie">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nazwa" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AspNetRoles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
-    <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
-    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
-  </EntityType>
-  <EntityType Name="AspNetUserRoles">
-    <Key>
-      <PropertyRef Name="AspNetRoles_Id" />
-      <PropertyRef Name="AspNetUsers_Id" />
-    </Key>
-    <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
-  </EntityType>
-  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="ZlecenieModel.Store.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserLogins" Type="ZlecenieModel.Store.AspNetUserLogins" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserLogins">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_Zlecenie_dbo_AspNetUsers_ID">
-    <End Role="AspNetUsers" Type="ZlecenieModel.Store.AspNetUsers" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Zlecenie" Type="ZlecenieModel.Store.Zlecenie" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Zlecenie">
-        <PropertyRef Name="Kurier" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-    <End Role="AspNetUsers" Type="ZlecenieModel.Store.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserClaims" Type="ZlecenieModel.Store.AspNetUserClaims" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserClaims">
-        <PropertyRef Name="User_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ZlecenieStatusZlecenie">
-    <End Role="StatusZlecenie" Type="ZlecenieModel.Store.StatusZlecenie" Multiplicity="1" />
-    <End Role="Zlecenie" Type="ZlecenieModel.Store.Zlecenie" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StatusZlecenie">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Zlecenie">
-        <PropertyRef Name="Status" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AspNetUserRoles_AspNetRoles">
-    <End Role="AspNetRoles" Type="ZlecenieModel.Store.AspNetRoles" Multiplicity="1" />
-    <End Role="AspNetUserRoles" Type="ZlecenieModel.Store.AspNetUserRoles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetRoles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetRoles_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AspNetUserRoles_AspNetUsers">
-    <End Role="AspNetUserRoles" Type="ZlecenieModel.Store.AspNetUserRoles" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="ZlecenieModel.Store.AspNetUsers" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="AspNetUsers_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="ZlecenieModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="Name" Nullable="false" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+          <Property Name="User_Id" Nullable="false" MaxLength="128" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="LoginProvider" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="ProviderKey" Nullable="false" MaxLength="128" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Nullable="false" MaxLength="128" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Nullable="false" MaxLength="150" Type="nvarchar" />
+          <Property Name="ContextKey" Nullable="false" MaxLength="300" Type="nvarchar" />
+          <Property Name="Model" Nullable="false" Type="varbinary(max)" />
+          <Property Name="ProductVersion" Nullable="false" MaxLength="32" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="PowodOdrzucenia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Powód" Nullable="false" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PowodPrzelozeniaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Powód" Nullable="false" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RodzajOpakowania">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Rodzaj" Nullable="false" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RodzajZleceniaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Rodzaj" Nullable="false" Type="text" />
+        </EntityType>
+        <EntityType Name="StatusZlecenie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Nazwa" Nullable="false" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Zawartosc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Zawartość" Nullable="false" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Zlecenie">
+          <Key>
+            <PropertyRef Name="ZlecenieID" />
+          </Key>
+          <Property Name="ZlecenieID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Miejsce_nadania" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="Miejsce_dostawy" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="Odbiorca" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="Zleceniodawca" Nullable="false" MaxLength="100" Type="nvarchar" />
+          <Property Name="Ilosc_opakowan" Type="int" />
+          <Property Name="Materialy_niebezpieczne" Nullable="false" Type="bit" />
+          <Property Name="Pobranie_za_przesylke" Nullable="false" Type="bit" />
+          <Property Name="Priorytet" Nullable="false" Type="bit" />
+          <Property Name="Kurier" MaxLength="128" Type="nvarchar" />
+          <Property Name="Status" Nullable="false" Type="int" />
+          <Property Name="Komentarz_kuriera" Type="nvarchar(max)" />
+          <Property Name="Komentarz_nadawcy" Type="nvarchar(max)" />
+          <Property Name="RodzajOpakowaniaId" Type="int" />
+          <Property Name="ZawartoscId" Type="int" />
+          <Property Name="PowodOdrzuceniaId" Type="int" />
+          <Property Name="PowodPrzelozeniaId" Type="int" />
+          <Property Name="RodzajZleceniaId" Type="int" />
+        </EntityType>
+        <Association Name="FK_AspNetUserRoles_AspNetRoles">
+          <End Type="Self.AspNetRoles" Multiplicity="1" Role="AspNetRoles" />
+          <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUsers">
+          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers" />
+          <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZleceniePowodOdrzucenia">
+          <End Type="Self.PowodOdrzucenia" Multiplicity="0..1" Role="PowodOdrzucenia" />
+          <End Type="Self.Zlecenie" Multiplicity="*" Role="Zlecenie" />
+          <ReferentialConstraint>
+            <Principal Role="PowodOdrzucenia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="PowodOdrzuceniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZleceniePowodPrzelozenia">
+          <End Type="Self.PowodPrzelozeniaSet" Multiplicity="0..1" Role="PowodPrzelozeniaSet" />
+          <End Type="Self.Zlecenie" Multiplicity="*" Role="Zlecenie" />
+          <ReferentialConstraint>
+            <Principal Role="PowodPrzelozeniaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="PowodPrzelozeniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZlecenieRodzajOpakowania">
+          <End Type="Self.RodzajOpakowania" Multiplicity="0..1" Role="RodzajOpakowania" />
+          <End Type="Self.Zlecenie" Multiplicity="*" Role="Zlecenie" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajOpakowania">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="RodzajOpakowaniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZlecenieRodzajZlecenia">
+          <End Type="Self.RodzajZleceniaSet" Multiplicity="0..1" Role="RodzajZleceniaSet" />
+          <End Type="Self.Zlecenie" Multiplicity="*" Role="Zlecenie" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajZleceniaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="RodzajZleceniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZlecenieStatusZlecenie">
+          <End Type="Self.StatusZlecenie" Multiplicity="1" Role="StatusZlecenie" />
+          <End Type="Self.Zlecenie" Multiplicity="*" Role="Zlecenie" />
+          <ReferentialConstraint>
+            <Principal Role="StatusZlecenie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZlecenieZawartosc">
+          <End Type="Self.Zawartosc" Multiplicity="0..1" Role="Zawartosc" />
+          <End Type="Self.Zlecenie" Multiplicity="*" Role="Zlecenie" />
+          <ReferentialConstraint>
+            <Principal Role="Zawartosc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="ZawartoscId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZlecenieModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowodOdrzucenia" EntityType="Self.PowodOdrzucenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowodPrzelozeniaSet" EntityType="Self.PowodPrzelozeniaSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RodzajOpakowania" EntityType="Self.RodzajOpakowania" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RodzajZleceniaSet" EntityType="Self.RodzajZleceniaSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusZlecenie" EntityType="Self.StatusZlecenie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zawartosc" EntityType="Self.Zawartosc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zlecenie" EntityType="Self.Zlecenie" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Self.FK_AspNetUserRoles_AspNetRoles">
+            <End EntitySet="AspNetRoles" Role="AspNetRoles" />
+            <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="Self.FK_AspNetUserRoles_AspNetUsers">
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+            <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZleceniePowodOdrzucenia" Association="Self.FK_ZleceniePowodOdrzucenia">
+            <End EntitySet="PowodOdrzucenia" Role="PowodOdrzucenia" />
+            <End EntitySet="Zlecenie" Role="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZleceniePowodPrzelozenia" Association="Self.FK_ZleceniePowodPrzelozenia">
+            <End EntitySet="PowodPrzelozeniaSet" Role="PowodPrzelozeniaSet" />
+            <End EntitySet="Zlecenie" Role="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZlecenieRodzajOpakowania" Association="Self.FK_ZlecenieRodzajOpakowania">
+            <End EntitySet="RodzajOpakowania" Role="RodzajOpakowania" />
+            <End EntitySet="Zlecenie" Role="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZlecenieRodzajZlecenia" Association="Self.FK_ZlecenieRodzajZlecenia">
+            <End EntitySet="RodzajZleceniaSet" Role="RodzajZleceniaSet" />
+            <End EntitySet="Zlecenie" Role="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="Self.FK_ZlecenieStatusZlecenie">
+            <End EntitySet="StatusZlecenie" Role="StatusZlecenie" />
+            <End EntitySet="Zlecenie" Role="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZlecenieZawartosc" Association="Self.FK_ZlecenieZawartosc">
+            <End EntitySet="Zawartosc" Role="Zawartosc" />
+            <End EntitySet="Zlecenie" Role="Zlecenie" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ZlecenieModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -216,42 +286,51 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="UserName" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="PasswordHash" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="SecurityStamp" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Discriminator" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="Zlecenie" Relationship="Self.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" FromRole="AspNetUsers" ToRole="Zlecenie" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="ZlecenieModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetRoles" Relationship="ZlecenieModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ZlecenieModel.AspNetUserRoles1" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Zlecenie">
           <Key>
             <PropertyRef Name="ZlecenieID" />
           </Key>
           <Property Name="ZlecenieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Miejsce_nadania" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Miejsce_dostawy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Odbiorca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Zleceniodawca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Zawartosc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Ilosc_opakowan" Type="Int32" />
-          <Property Name="Rodzaj_opakowan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Miejsce_nadania" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miejsce_dostawy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Odbiorca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Zleceniodawca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ilosc_opakowan" Type="Int32" Nullable="true" />
           <Property Name="Materialy_niebezpieczne" Type="Boolean" Nullable="false" />
           <Property Name="Pobranie_za_przesylke" Type="Boolean" Nullable="false" />
           <Property Name="Priorytet" Type="Boolean" Nullable="false" />
-          <Property Name="Kategoria_zlecenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Kurier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Kurier" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" FromRole="Zlecenie" ToRole="AspNetUsers" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="StatusZlecenie" Relationship="ZlecenieModel.FK_ZlecenieStatusZlecenie" FromRole="Zlecenie" ToRole="StatusZlecenie" />
+          <Property Name="Komentarz_kuriera" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="Komentarz_nadawcy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="true" />
+          <Property Name="RodzajOpakowaniaId" Type="Int32" Nullable="true" />
+          <Property Name="ZawartoscId" Type="Int32" Nullable="true" />
+          <Property Name="PowodOdrzuceniaId" Type="Int32" Nullable="true" />
+          <Property Name="PowodPrzelozeniaId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="PowodOdrzucenia" Relationship="ZlecenieModel.FK_ZleceniePowodOdrzucenia" FromRole="Zlecenie" ToRole="PowodOdrzucenia" />
+          <NavigationProperty Name="PowodPrzelozeniaSet" Relationship="ZlecenieModel.FK_ZleceniePowodPrzelozenia" FromRole="Zlecenie" ToRole="PowodPrzelozeniaSet" />
+          <NavigationProperty Name="RodzajOpakowania" Relationship="ZlecenieModel.FK_ZlecenieRodzajOpakowania" FromRole="Zlecenie" ToRole="RodzajOpakowania" />
+          <NavigationProperty Name="Zawartosc1" Relationship="ZlecenieModel.FK_ZlecenieZawartosc" FromRole="Zlecenie" ToRole="Zawartosc" />
+          <Property Name="RodzajZleceniaId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="RodzajZleceniaSet" Relationship="ZlecenieModel.FK_ZlecenieRodzajZlecenia" FromRole="Zlecenie" ToRole="RodzajZleceniaSet" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <End Type="Self.AspNetUserLogins" Multiplicity="*" Role="AspNetUserLogins" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -262,10 +341,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Zlecenie_dbo_AspNetUsers_ID">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+          <End Type="Self.AspNetUsers" Multiplicity="0..1" Role="AspNetUsers">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Zlecenie" Type="Self.Zlecenie" Multiplicity="*" />
+          <End Type="Self.Zlecenie" Multiplicity="*" Role="Zlecenie" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -280,17 +359,17 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="Zlecenie" EntityType="Self.Zlecenie" />
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+            <End EntitySet="AspNetUserLogins" Role="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Zlecenie_dbo_AspNetUsers_ID" Association="Self.FK_dbo_Zlecenie_dbo_AspNetUsers_ID">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Zlecenie" EntitySet="Zlecenie" />
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+            <End EntitySet="Zlecenie" Role="Zlecenie" />
           </AssociationSet>
           <EntitySet Name="AspNetUserClaims" EntityType="ZlecenieModel.AspNetUserClaims" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="ZlecenieModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+            <End EntitySet="AspNetUserClaims" Role="AspNetUserClaims" />
           </AssociationSet>
           <EntitySet Name="StatusZlecenie" EntityType="ZlecenieModel.StatusZlecenie" />
           <AssociationSet Name="FK_ZlecenieStatusZlecenie" Association="ZlecenieModel.FK_ZlecenieStatusZlecenie">
@@ -299,9 +378,34 @@
           </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="ZlecenieModel.AspNetRoles" />
           <EntitySet Name="C__MigrationHistory" EntityType="ZlecenieModel.C__MigrationHistory" />
-          <AssociationSet Name="AspNetUserRoles" Association="ZlecenieModel.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          <EntitySet Name="PowodOdrzucenia" EntityType="ZlecenieModel.PowodOdrzucenia" />
+          <EntitySet Name="PowodPrzelozeniaSet" EntityType="ZlecenieModel.PowodPrzelozeniaSet" />
+          <EntitySet Name="RodzajOpakowania" EntityType="ZlecenieModel.RodzajOpakowania" />
+          <EntitySet Name="Zawartosc" EntityType="ZlecenieModel.Zawartosc" />
+          <AssociationSet Name="FK_ZleceniePowodOdrzucenia" Association="ZlecenieModel.FK_ZleceniePowodOdrzucenia">
+            <End Role="PowodOdrzucenia" EntitySet="PowodOdrzucenia" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZleceniePowodPrzelozenia" Association="ZlecenieModel.FK_ZleceniePowodPrzelozenia">
+            <End Role="PowodPrzelozeniaSet" EntitySet="PowodPrzelozeniaSet" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZlecenieRodzajOpakowania" Association="ZlecenieModel.FK_ZlecenieRodzajOpakowania">
+            <End Role="RodzajOpakowania" EntitySet="RodzajOpakowania" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZlecenieZawartosc" Association="ZlecenieModel.FK_ZlecenieZawartosc">
+            <End Role="Zawartosc" EntitySet="Zawartosc" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles1" Association="ZlecenieModel.AspNetUserRoles1">
+            <End EntitySet="AspNetRoles" Role="AspNetRoles" />
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="RodzajZleceniaSet" EntityType="ZlecenieModel.RodzajZleceniaSet" />
+          <AssociationSet Name="FK_ZlecenieRodzajZlecenia" Association="ZlecenieModel.FK_ZlecenieRodzajZlecenia">
+            <End Role="RodzajZleceniaSet" EntitySet="RodzajZleceniaSet" />
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetUserClaims">
@@ -315,10 +419,10 @@
           <NavigationProperty Name="AspNetUsers" Relationship="ZlecenieModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
-          <End Type="ZlecenieModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+          <End Type="ZlecenieModel.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ZlecenieModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <End Type="ZlecenieModel.AspNetUserClaims" Multiplicity="*" Role="AspNetUserClaims" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -352,9 +456,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="ZlecenieModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <Property Name="Id" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ZlecenieModel.AspNetUserRoles1" FromRole="AspNetRoles" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -366,16 +470,116 @@
           <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="AspNetUserRoles">
-          <End Type="ZlecenieModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
-          <End Type="ZlecenieModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        <EntityType Name="PowodOdrzucenia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Powód" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZleceniePowodOdrzucenia" FromRole="PowodOdrzucenia" ToRole="Zlecenie" />
+        </EntityType>
+        <EntityType Name="PowodPrzelozeniaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Powód" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZleceniePowodPrzelozenia" FromRole="PowodPrzelozeniaSet" ToRole="Zlecenie" />
+        </EntityType>
+        <EntityType Name="RodzajOpakowania">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rodzaj" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZlecenieRodzajOpakowania" FromRole="RodzajOpakowania" ToRole="Zlecenie" />
+        </EntityType>
+        <EntityType Name="Zawartosc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Zawartość" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZlecenieZawartosc" FromRole="Zawartosc" ToRole="Zlecenie" />
+        </EntityType>
+        <Association Name="FK_ZleceniePowodOdrzucenia">
+          <End Type="ZlecenieModel.PowodOdrzucenia" Role="PowodOdrzucenia" Multiplicity="0..1" />
+          <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowodOdrzucenia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="PowodOdrzuceniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZleceniePowodPrzelozenia">
+          <End Type="ZlecenieModel.PowodPrzelozeniaSet" Role="PowodPrzelozeniaSet" Multiplicity="0..1" />
+          <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowodPrzelozeniaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="PowodPrzelozeniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZlecenieRodzajOpakowania">
+          <End Type="ZlecenieModel.RodzajOpakowania" Role="RodzajOpakowania" Multiplicity="0..1" />
+          <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajOpakowania">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="RodzajOpakowaniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZlecenieZawartosc">
+          <End Type="ZlecenieModel.Zawartosc" Role="Zawartosc" Multiplicity="0..1" />
+          <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zawartosc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="ZawartoscId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles1">
+          <End Type="ZlecenieModel.AspNetRoles" Multiplicity="*" Role="AspNetRoles" />
+          <End Type="ZlecenieModel.AspNetUsers" Multiplicity="*" Role="AspNetUsers" />
+        </Association>
+        <EntityType Name="RodzajZleceniaSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZlecenieRodzajZlecenia" FromRole="RodzajZleceniaSet" ToRole="Zlecenie" />
+          <Property Name="Rodzaj" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_ZlecenieRodzajZlecenia">
+          <End Type="ZlecenieModel.RodzajZleceniaSet" Role="RodzajZleceniaSet" Multiplicity="0..1" />
+          <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajZleceniaSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="RodzajZleceniaId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ZlecenieModelStoreContainer" CdmEntityContainer="ZlecenieEntities">
+  <EntityContainerMapping CdmEntityContainer="ZlecenieEntities" StorageEntityContainer="ZlecenieModelStoreContainer">
     <EntitySetMapping Name="AspNetUserLogins">
       <EntityTypeMapping TypeName="IsTypeOf(ZlecenieModel.AspNetUserLogins)">
         <MappingFragment StoreEntitySet="AspNetUserLogins">
@@ -399,18 +603,22 @@
     <EntitySetMapping Name="Zlecenie">
       <EntityTypeMapping TypeName="IsTypeOf(ZlecenieModel.Zlecenie)">
         <MappingFragment StoreEntitySet="Zlecenie">
-          <ScalarProperty Name="ZlecenieID" ColumnName="ZlecenieID" />
+          <ScalarProperty Name="RodzajZleceniaId" ColumnName="RodzajZleceniaId" />
+                <ScalarProperty Name="PowodPrzelozeniaId" ColumnName="PowodPrzelozeniaId" />
+                <ScalarProperty Name="PowodOdrzuceniaId" ColumnName="PowodOdrzuceniaId" />
+                <ScalarProperty Name="ZawartoscId" ColumnName="ZawartoscId" />
+                <ScalarProperty Name="RodzajOpakowaniaId" ColumnName="RodzajOpakowaniaId" />
+                <ScalarProperty Name="Komentarz_nadawcy" ColumnName="Komentarz_nadawcy" />
+                <ScalarProperty Name="Komentarz_kuriera" ColumnName="Komentarz_kuriera" />
+                <ScalarProperty Name="ZlecenieID" ColumnName="ZlecenieID" />
           <ScalarProperty Name="Miejsce_nadania" ColumnName="Miejsce_nadania" />
           <ScalarProperty Name="Miejsce_dostawy" ColumnName="Miejsce_dostawy" />
           <ScalarProperty Name="Odbiorca" ColumnName="Odbiorca" />
           <ScalarProperty Name="Zleceniodawca" ColumnName="Zleceniodawca" />
-          <ScalarProperty Name="Zawartosc" ColumnName="Zawartosc" />
           <ScalarProperty Name="Ilosc_opakowan" ColumnName="Ilosc_opakowan" />
-          <ScalarProperty Name="Rodzaj_opakowan" ColumnName="Rodzaj_opakowan" />
           <ScalarProperty Name="Materialy_niebezpieczne" ColumnName="Materialy_niebezpieczne" />
           <ScalarProperty Name="Pobranie_za_przesylke" ColumnName="Pobranie_za_przesylke" />
           <ScalarProperty Name="Priorytet" ColumnName="Priorytet" />
-          <ScalarProperty Name="Kategoria_zlecenia" ColumnName="Kategoria_zlecenia" />
           <ScalarProperty Name="Kurier" ColumnName="Kurier" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
@@ -452,14 +660,54 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="ZlecenieModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetRoles">
-        <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
-      </EndProperty>
-      <EndProperty Name="AspNetUsers">
-        <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
+          <EntitySetMapping Name="PowodOdrzucenia">
+            <EntityTypeMapping TypeName="ZlecenieModel.PowodOdrzucenia">
+              <MappingFragment StoreEntitySet="PowodOdrzucenia">
+                <ScalarProperty Name="Powód" ColumnName="Powód" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PowodPrzelozeniaSet">
+            <EntityTypeMapping TypeName="ZlecenieModel.PowodPrzelozeniaSet">
+              <MappingFragment StoreEntitySet="PowodPrzelozeniaSet">
+                <ScalarProperty Name="Powód" ColumnName="Powód" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RodzajOpakowania">
+            <EntityTypeMapping TypeName="ZlecenieModel.RodzajOpakowania">
+              <MappingFragment StoreEntitySet="RodzajOpakowania">
+                <ScalarProperty Name="Rodzaj" ColumnName="Rodzaj" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zawartosc">
+            <EntityTypeMapping TypeName="ZlecenieModel.Zawartosc">
+              <MappingFragment StoreEntitySet="Zawartosc">
+                <ScalarProperty Name="Zawartość" ColumnName="Zawartość" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles1" TypeName="ZlecenieModel.AspNetUserRoles1" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="RodzajZleceniaSet">
+            <EntityTypeMapping TypeName="ZlecenieModel.RodzajZleceniaSet">
+              <MappingFragment StoreEntitySet="RodzajZleceniaSet">
+                <ScalarProperty Name="Rodzaj" ColumnName="Rodzaj" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
