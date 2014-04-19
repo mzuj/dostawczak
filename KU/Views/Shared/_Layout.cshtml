@@ -27,9 +27,18 @@
                 }
             </div>
             <div class="navbar-collapse collapse">
+                @if (User.IsInRole("Kurier"))
+                { 
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Zlecenia", "Index", "Zlecenie")</li>
+                    <li>@Html.ActionLink("Zlecenia", "Index", "IK")</li>
                 </ul>
+                }
+                @if (User.IsInRole("Konsultant tel"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("KonsOM", "Index", "KonsOM")</li>
+                    </ul>
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

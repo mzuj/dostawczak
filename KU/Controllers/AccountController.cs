@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using KU.Models;
+using KU.Logic;
 
 namespace KU.Controllers
 {
@@ -26,7 +27,6 @@ namespace KU.Controllers
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -47,9 +47,9 @@ namespace KU.Controllers
             {
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
-                {
+                {                 
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToAction("Index","Zlecenie");
+                    return RedirectToAction("Index","Home");
                 }
                 else
                 {
@@ -180,6 +180,7 @@ namespace KU.Controllers
             return View(model);
         }
 
+        
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
@@ -404,5 +405,7 @@ namespace KU.Controllers
             }
         }
         #endregion
+
+
     }
 }

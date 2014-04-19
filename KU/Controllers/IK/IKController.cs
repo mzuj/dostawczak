@@ -14,7 +14,7 @@ namespace KU.Controllers
     public class IKController : Controller
     {
         private ZlecenieEntities db = new ZlecenieEntities();
-        CommissionStatusHelper errandStatusHelper = new CommissionStatusHelper();
+        CommissionStatusHelper commissionStatusHelper = new CommissionStatusHelper();
 
         // GET: /Zlecenie/
         public ActionResult Index()
@@ -25,8 +25,8 @@ namespace KU.Controllers
             }
             else
             {
-                var idZleceniaOdbioru = errandStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
-                var idZleceniaDostawy = errandStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
+                var idZleceniaOdbioru = commissionStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
+                var idZleceniaDostawy = commissionStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
 
                 var zlecenie = from s in db.Zlecenie
                                where s.Status.Equals(idZleceniaDostawy) || s.Status.Equals(idZleceniaOdbioru) 
@@ -62,7 +62,7 @@ namespace KU.Controllers
         [HttpPost]
         public ActionResult Completed(int id)
         {
-            errandStatusHelper.SetCommissionStatus("Zrealizowane", id);
+            commissionStatusHelper.SetCommissionStatus("Zrealizowane", id);
             return RedirectToAction("Index","Zlecenie");
         }
 
@@ -78,7 +78,7 @@ namespace KU.Controllers
             var zle = db.Zlecenie.Find(id);
             zle.PowodPrzelozeniaId = PowodPrzelozeniaId;
             db.SaveChanges();
-            errandStatusHelper.SetCommissionStatus("Do późniejszej realizacji", id);
+            commissionStatusHelper.SetCommissionStatus("Do późniejszej realizacji", id);
             return RedirectToAction("Index", "Zlecenie");
         }
 
@@ -94,7 +94,7 @@ namespace KU.Controllers
             var zle = db.Zlecenie.Find(id);
             zle.PowodOdrzuceniaId = PowodOdrzuceniaId;
             db.SaveChanges();
-            errandStatusHelper.SetCommissionStatus("Brak możliwośc realizacji", id);
+            commissionStatusHelper.SetCommissionStatus("Brak możliwośc realizacji", id);
             return RedirectToAction("Index", "Zlecenie");
         }
 

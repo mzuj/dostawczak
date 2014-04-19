@@ -16,15 +16,18 @@ namespace KU.Logic
             var idStatusCompleted = from s in db.StatusZlecenie
                                     where s.Nazwa.Equals(statusName)
                                     select s.Id;
-            return idStatusCompleted.First();
+            if (idStatusCompleted == null)
+                return 0;
+            else
+                return idStatusCompleted.First();
         }
 
         public void SetCommissionStatus(String statusName, int erandId)
         {
             var statusIdToSet = GetStatusIdByName(statusName);
-            var CommissionToSetStatus = db.Zlecenie.Find(erandId);
+            var commissionToSetStatus = db.Zlecenie.Find(erandId);
 
-            CommissionToSetStatus.Status = statusIdToSet;
+            commissionToSetStatus.Status = statusIdToSet;
             db.SaveChanges();
         }
     }
