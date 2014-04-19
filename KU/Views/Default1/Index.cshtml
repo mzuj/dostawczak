@@ -1,0 +1,153 @@
+﻿@model IEnumerable<KU.Models.Zlecenie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Miejsce_nadania)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miejsce_dostawy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Odbiorca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zleceniodawca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilosc_opakowan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Materialy_niebezpieczne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pobranie_za_przesylke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priorytet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Komentarz_kuriera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Komentarz_nadawcy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilosc_nieudanych_prob_realizacji)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_nasepnej_proby)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KanalSprzedazySet.Nazwa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OknoWyjazduSet.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PowodOdrzucenia.Powód)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PowodPrzelozeniaSet.Powód)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RodzajOpakowania.Rodzaj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RodzajZleceniaSet.Rodzaj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusZlecenie.Nazwa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zawartosc.Zawartość)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Miejsce_nadania)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Miejsce_dostawy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Odbiorca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zleceniodawca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ilosc_opakowan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Materialy_niebezpieczne)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pobranie_za_przesylke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priorytet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Komentarz_kuriera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Komentarz_nadawcy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ilosc_nieudanych_prob_realizacji)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_nasepnej_proby)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KanalSprzedazySet.Nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OknoWyjazduSet.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PowodOdrzucenia.Powód)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PowodPrzelozeniaSet.Powód)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RodzajOpakowania.Rodzaj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RodzajZleceniaSet.Rodzaj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusZlecenie.Nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zawartosc.Zawartość)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ZlecenieID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ZlecenieID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ZlecenieID })
+        </td>
+    </tr>
+}
+
+</table>

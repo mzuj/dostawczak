@@ -162,6 +162,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewFolder1\Default1Controller.cs" />
     <Compile Include="Controllers\ZlecenieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,7 +194,10 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OknoWyjazdu.cs">
+    <Compile Include="Models\KanalSprzedazySet.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OknoWyjazduSet.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PowodOdrzucenia.cs">
@@ -319,6 +323,11 @@
     <Content Include="Views\Zlecenie\DelayCompletion.cshtml" />
     <Content Include="Views\Zlecenie\UnableToComplete.cshtml" />
     <Content Include="Views\Zlecenie\Create.cshtml" />
+    <Content Include="Views\Default1\Create.cshtml" />
+    <Content Include="Views\Default1\Delete.cshtml" />
+    <Content Include="Views\Default1\Details.cshtml" />
+    <Content Include="Views\Default1\Edit.cshtml" />
+    <Content Include="Views\Default1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

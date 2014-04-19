@@ -35,14 +35,16 @@ namespace KU.Models
         public int OknoWyjazduId { get; set; }
         public int Ilosc_nieudanych_prob_realizacji { get; set; }
         public System.DateTime Data_nasepnej_proby { get; set; }
+        public int KanalSprzedazyId { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual StatusZlecenie StatusZlecenie { get; set; }
+        public virtual KanalSprzedazySet KanalSprzedazySet { get; set; }
+        public virtual OknoWyjazduSet OknoWyjazduSet { get; set; }
         public virtual PowodOdrzucenia PowodOdrzucenia { get; set; }
         public virtual PowodPrzelozeniaSet PowodPrzelozeniaSet { get; set; }
         public virtual RodzajOpakowania RodzajOpakowania { get; set; }
-        public virtual Zawartosc Zawartosc1 { get; set; }
         public virtual RodzajZleceniaSet RodzajZleceniaSet { get; set; }
-        public virtual OknoWyjazdu OknoWyjazdu { get; set; }
+        public virtual StatusZlecenie StatusZlecenie { get; set; }
+        public virtual Zawartosc Zawartosc { get; set; }
     }
 }

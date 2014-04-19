@@ -16,9 +16,9 @@ namespace KU.Models
     {
         public AspNetUsers()
         {
+            this.AspNetUserClaims = new HashSet<AspNetUserClaims>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
             this.Zlecenie = new HashSet<Zlecenie>();
-            this.AspNetUserClaims = new HashSet<AspNetUserClaims>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
         }
     
@@ -28,9 +28,9 @@ namespace KU.Models
         public string SecurityStamp { get; set; }
         public string Discriminator { get; set; }
     
+        public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<Zlecenie> Zlecenie { get; set; }
-        public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }
 }

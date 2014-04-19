@@ -26,17 +26,18 @@ namespace KU.Models
         }
     
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<Zlecenie> Zlecenie { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<StatusZlecenie> StatusZlecenie { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<KanalSprzedazySet> KanalSprzedazySet { get; set; }
+        public virtual DbSet<OknoWyjazduSet> OknoWyjazduSet { get; set; }
         public virtual DbSet<PowodOdrzucenia> PowodOdrzucenia { get; set; }
         public virtual DbSet<PowodPrzelozeniaSet> PowodPrzelozeniaSet { get; set; }
         public virtual DbSet<RodzajOpakowania> RodzajOpakowania { get; set; }
-        public virtual DbSet<Zawartosc> Zawartosc { get; set; }
         public virtual DbSet<RodzajZleceniaSet> RodzajZleceniaSet { get; set; }
-        public virtual DbSet<OknoWyjazdu> OknoWyjazduSet { get; set; }
+        public virtual DbSet<StatusZlecenie> StatusZlecenie { get; set; }
+        public virtual DbSet<Zawartosc> Zawartosc { get; set; }
+        public virtual DbSet<Zlecenie> Zlecenie { get; set; }
     }
 }

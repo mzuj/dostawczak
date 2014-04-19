@@ -12,16 +12,15 @@ namespace KU.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OknoWyjazdu
+    public partial class KanalSprzedazySet
     {
-        public OknoWyjazdu()
+        public KanalSprzedazySet()
         {
             this.Zlecenie = new HashSet<Zlecenie>();
         }
     
         public int Id { get; set; }
-        public System.DateTime Rozpoczęcie { get; set; }
-        public System.DateTime Zakończenie { get; set; }
+        public string Nazwa { get; set; }
     
         public virtual ICollection<Zlecenie> Zlecenie { get; set; }
     }
