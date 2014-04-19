@@ -162,12 +162,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NewFolder1\Default1Controller.cs" />
-    <Compile Include="Controllers\ZlecenieController.cs" />
+    <Compile Include="Controllers\KonsOM\KonsOMController.cs" />
+    <Compile Include="Controllers\IK\IKController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logic\ErrandStatusHelper.cs" />
+    <Compile Include="Logic\CommissionStatusHelper.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.Designer.cs">
       <DependentUpon>201404092310192_InitialCreate.cs</DependentUpon>
@@ -323,11 +323,11 @@
     <Content Include="Views\Zlecenie\DelayCompletion.cshtml" />
     <Content Include="Views\Zlecenie\UnableToComplete.cshtml" />
     <Content Include="Views\Zlecenie\Create.cshtml" />
-    <Content Include="Views\Default1\Create.cshtml" />
-    <Content Include="Views\Default1\Delete.cshtml" />
-    <Content Include="Views\Default1\Details.cshtml" />
-    <Content Include="Views\Default1\Edit.cshtml" />
-    <Content Include="Views\Default1\Index.cshtml" />
+    <Content Include="Views\KonsOM\Create.cshtml" />
+    <Content Include="Views\KonsOM\Delete.cshtml" />
+    <Content Include="Views\KonsOM\Details.cshtml" />
+    <Content Include="Views\KonsOM\Edit.cshtml" />
+    <Content Include="Views\KonsOM\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

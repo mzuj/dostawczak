@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace KU.Logic
 {
-    public class ErrandStatusHelper 
+    public class CommissionStatusHelper 
     {
         private ZlecenieEntities db = new ZlecenieEntities();
 
@@ -19,12 +19,12 @@ namespace KU.Logic
             return idStatusCompleted.First();
         }
 
-        public void SetErrandStatus(String statusName, int erandId)
+        public void SetCommissionStatus(String statusName, int erandId)
         {
             var statusIdToSet = GetStatusIdByName(statusName);
-            var errandToSetStatus = db.Zlecenie.Find(erandId);
+            var CommissionToSetStatus = db.Zlecenie.Find(erandId);
 
-            errandToSetStatus.Status = statusIdToSet;
+            CommissionToSetStatus.Status = statusIdToSet;
             db.SaveChanges();
         }
     }
