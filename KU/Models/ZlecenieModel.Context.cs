@@ -37,5 +37,6 @@ namespace KU.Models
         public virtual DbSet<RodzajOpakowania> RodzajOpakowania { get; set; }
         public virtual DbSet<Zawartosc> Zawartosc { get; set; }
         public virtual DbSet<RodzajZleceniaSet> RodzajZleceniaSet { get; set; }
+        public virtual DbSet<OknoWyjazdu> OknoWyjazduSet { get; set; }
     }
 }

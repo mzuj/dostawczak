@@ -193,6 +193,9 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OknoWyjazdu.cs">
+      <DependentUpon>ZlecenieModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PowodOdrzucenia.cs">
       <DependentUpon>ZlecenieModel.tt</DependentUpon>
     </Compile>

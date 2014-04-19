@@ -32,6 +32,9 @@ namespace KU.Models
         public Nullable<int> PowodOdrzuceniaId { get; set; }
         public Nullable<int> PowodPrzelozeniaId { get; set; }
         public Nullable<int> RodzajZleceniaId { get; set; }
+        public int OknoWyjazduId { get; set; }
+        public int Ilosc_nieudanych_prob_realizacji { get; set; }
+        public System.DateTime Data_nasepnej_proby { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual StatusZlecenie StatusZlecenie { get; set; }
@@ -40,5 +43,6 @@ namespace KU.Models
         public virtual RodzajOpakowania RodzajOpakowania { get; set; }
         public virtual Zawartosc Zawartosc1 { get; set; }
         public virtual RodzajZleceniaSet RodzajZleceniaSet { get; set; }
+        public virtual OknoWyjazdu OknoWyjazdu { get; set; }
     }
 }

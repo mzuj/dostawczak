@@ -12,16 +12,16 @@ namespace KU.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RodzajOpakowania
+    public partial class OknoWyjazdu
     {
-        public RodzajOpakowania()
+        public OknoWyjazdu()
         {
             this.Zlecenie = new HashSet<Zlecenie>();
         }
     
         public int Id { get; set; }
-        public string Rodzaj { get; set; }
-        public string Rozmiar { get; set; }
+        public System.DateTime Rozpoczęcie { get; set; }
+        public System.DateTime Zakończenie { get; set; }
     
         public virtual ICollection<Zlecenie> Zlecenie { get; set; }
     }

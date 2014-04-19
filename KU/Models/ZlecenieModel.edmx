@@ -325,6 +325,10 @@
           <NavigationProperty Name="Zawartosc1" Relationship="ZlecenieModel.FK_ZlecenieZawartosc" FromRole="Zlecenie" ToRole="Zawartosc" />
           <Property Name="RodzajZleceniaId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="RodzajZleceniaSet" Relationship="ZlecenieModel.FK_ZlecenieRodzajZlecenia" FromRole="Zlecenie" ToRole="RodzajZleceniaSet" />
+          <NavigationProperty Name="OknoWyjazdu" Relationship="ZlecenieModel.ZlecenieOknoWyjazdu" FromRole="Zlecenie" ToRole="OknoWyjazdu" />
+          <Property Name="OknoWyjazduId" Type="Int32" Nullable="false" />
+          <Property Name="Ilosc_nieudanych_prob_realizacji" Type="Int32" Nullable="false" />
+          <Property Name="Data_nasepnej_proby" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
           <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
@@ -406,6 +410,11 @@
           <AssociationSet Name="FK_ZlecenieRodzajZlecenia" Association="ZlecenieModel.FK_ZlecenieRodzajZlecenia">
             <End Role="RodzajZleceniaSet" EntitySet="RodzajZleceniaSet" />
             <End Role="Zlecenie" EntitySet="Zlecenie" />
+          </AssociationSet>
+          <EntitySet Name="OknoWyjazduSet" EntityType="ZlecenieModel.OknoWyjazdu" />
+          <AssociationSet Name="ZlecenieOknoWyjazdu" Association="ZlecenieModel.ZlecenieOknoWyjazdu">
+            <End Role="Zlecenie" EntitySet="Zlecenie" />
+            <End Role="OknoWyjazdu" EntitySet="OknoWyjazduSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetUserClaims">
@@ -493,6 +502,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Rodzaj" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.FK_ZlecenieRodzajOpakowania" FromRole="RodzajOpakowania" ToRole="Zlecenie" />
+          <Property Name="Rozmiar" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Zawartosc">
           <Key>
@@ -571,6 +581,27 @@
             </Principal>
             <Dependent Role="Zlecenie">
               <PropertyRef Name="RodzajZleceniaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OknoWyjazdu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rozpoczęcie" Type="DateTime" Nullable="false" />
+          <Property Name="Zakończenie" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Zlecenie" Relationship="ZlecenieModel.ZlecenieOknoWyjazdu" FromRole="OknoWyjazdu" ToRole="Zlecenie" />
+        </EntityType>
+        <Association Name="ZlecenieOknoWyjazdu">
+          <End Type="ZlecenieModel.Zlecenie" Role="Zlecenie" Multiplicity="*" />
+          <End Type="ZlecenieModel.OknoWyjazdu" Role="OknoWyjazdu" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="OknoWyjazdu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zlecenie">
+              <PropertyRef Name="OknoWyjazduId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
