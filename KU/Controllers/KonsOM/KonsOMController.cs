@@ -10,7 +10,7 @@ using KU.Models;
 
 namespace KU.Controllers.NewFolder1
 {
-    public class Default1Controller : Controller
+    public class KonsOMController : Controller
     {
         private ZlecenieEntities db = new ZlecenieEntities();
 
