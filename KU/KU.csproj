@@ -168,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\CommissionStatusHelper.cs" />
+    <Compile Include="Logic\OknoWyjazduHelper.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.cs" />
     <Compile Include="Migrations\201404092310192_InitialCreate.Designer.cs">
       <DependentUpon>201404092310192_InitialCreate.cs</DependentUpon>

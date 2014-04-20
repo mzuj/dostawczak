@@ -25,15 +25,15 @@ namespace KU.Controllers
             }
             else
             {
-                var idZleceniaOdbioru = commissionStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
-                var idZleceniaDostawy = commissionStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
+                //var idZleceniaOdbioru = commissionStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - odbieranie");
+                //var idZleceniaDostawy = commissionStatusHelper.GetStatusIdByName("W trakcie realizacji przez kuriera - dostarczanie");
 
                 var zlecenie = from s in db.Zlecenie
-                               where s.Status.Equals(idZleceniaDostawy) || s.Status.Equals(idZleceniaOdbioru) 
+                               //where s.Status.Equals(idZleceniaDostawy) || s.Status.Equals(idZleceniaOdbioru) 
                                select s;
 
-                var zlecenieKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
-                var listaZlecen = zlecenieKuriera.OrderByDescending(s => s.Priorytet);
+                var zleceniaKuriera = zlecenie.Where(s => s.AspNetUsers.UserName.Contains(User.Identity.Name));
+                var listaZlecen = zleceniaKuriera.OrderByDescending(s => s.Priorytet);
 
                 return View(listaZlecen.ToList());
             }               
