@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1fb4b2c01a5d4829aac52ce08944ad80" Name="Diagram1" ZoomLevel="65">
+      <Diagram DiagramId="1fb4b2c01a5d4829aac52ce08944ad80" Name="Diagram1" ZoomLevel="56">
         <EntityTypeShape EntityType="ZlecenieModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="3.875" />
         <EntityTypeShape EntityType="ZlecenieModel.AspNetUsers" Width="1.5" PointX="3" PointY="3.25" />
         <EntityTypeShape EntityType="ZlecenieModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="ZlecenieModel.RodzajZleceniaSet" Width="1.5" PointX="3" PointY="16.625" />
         <EntityTypeShape EntityType="ZlecenieModel.StatusZlecenie" Width="1.5" PointX="3" PointY="14" />
         <EntityTypeShape EntityType="ZlecenieModel.Zawartosc" Width="1.5" PointX="3" PointY="24" />
-        <EntityTypeShape EntityType="ZlecenieModel.Zlecenie" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="ZlecenieModel.Zlecenie" Width="1.5" PointX="6.875" PointY="1.25" />
         <AssociationConnector Association="ZlecenieModel.FK_dbo_Zlecenie_dbo_AspNetUsers_ID" />
         <AssociationConnector Association="ZlecenieModel.FK_ZlecenieKanalSprzedazy" />
         <AssociationConnector Association="ZlecenieModel.FK_ZlecenieOknoWyjazdu" />

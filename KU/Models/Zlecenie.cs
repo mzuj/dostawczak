@@ -36,6 +36,8 @@ namespace KU.Models
         public int Ilosc_nieudanych_prob_realizacji { get; set; }
         public System.DateTime Data_nasepnej_proby { get; set; }
         public int KanalSprzedazyId { get; set; }
+        public bool Ubezpieczona { get; set; }
+        public bool Opóźniona { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual KanalSprzedazySet KanalSprzedazySet { get; set; }

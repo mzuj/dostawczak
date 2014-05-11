@@ -144,6 +144,8 @@
           <Property Name="Ilosc_nieudanych_prob_realizacji" Type="int" Nullable="false" />
           <Property Name="Data_nasepnej_proby" Type="datetime" Nullable="false" />
           <Property Name="KanalSprzedazyId" Type="int" Nullable="false" />
+          <Property Name="Ubezpieczona" Type="bit" Nullable="false" />
+          <Property Name="Opóźniona" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_AspNetUserRoles_AspNetRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
@@ -599,6 +601,8 @@
           <NavigationProperty Name="RodzajZleceniaSet" Relationship="ZlecenieModel.FK_ZlecenieRodzajZlecenia" FromRole="Zlecenie" ToRole="RodzajZleceniaSet" />
           <NavigationProperty Name="StatusZlecenie" Relationship="ZlecenieModel.FK_ZlecenieStatusZlecenie" FromRole="Zlecenie" ToRole="StatusZlecenie" />
           <NavigationProperty Name="Zawartosc" Relationship="ZlecenieModel.FK_ZlecenieZawartosc" FromRole="Zlecenie" ToRole="Zawartosc" />
+          <Property Name="Ubezpieczona" Type="Boolean" Nullable="false" />
+          <Property Name="Opóźniona" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
           <End Type="ZlecenieModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -866,6 +870,8 @@
           <EntitySetMapping Name="Zlecenie">
             <EntityTypeMapping TypeName="ZlecenieModel.Zlecenie">
               <MappingFragment StoreEntitySet="Zlecenie">
+                <ScalarProperty Name="Opóźniona" ColumnName="Opóźniona" />
+                <ScalarProperty Name="Ubezpieczona" ColumnName="Ubezpieczona" />
                 <ScalarProperty Name="KanalSprzedazyId" ColumnName="KanalSprzedazyId" />
                 <ScalarProperty Name="Data_nasepnej_proby" ColumnName="Data_nasepnej_proby" />
                 <ScalarProperty Name="Ilosc_nieudanych_prob_realizacji" ColumnName="Ilosc_nieudanych_prob_realizacji" />
